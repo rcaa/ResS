@@ -10,11 +10,17 @@ def driver = new FirefoxDriver()
 driver
 } 
 
+baseUrl = "http://localhost:8080/"
+
 environments {
    // run as “grails -Dgeb.env=chrome test-app”
    // See: http://code.google.com/p/selenium/wiki/ChromeDriver
    chrome {
-     driver = { new ChromeDriver() }
+     driver = {
+    File file = new File("chromedrivers/chromedriverlinux64"); //configurar com o enderço correto do chromedriver.
+    System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
+    new ChromeDriver();
+}
    }
 
    // run as “grails -Dgeb.env=firefox test-app”
