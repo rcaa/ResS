@@ -23,8 +23,8 @@ functional.GebConfig.groovy
 conf.spring.CucumberConfig.groovy
 -------------------------------------------------------------------------------------------------------------------
 
-P/ testar:  test-app -Dgeb.env=chrome functional:cucumber
-
+P/ rodar: -noreloading run-app
+P/ testar:  -noreloading test-app -Dgeb.env=chrome functional:cucumber
 -------------------------------------------------------------------------------------------------------------------
 
 <h2>Integração com o Travis-ci</h2> <br />
