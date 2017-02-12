@@ -9,15 +9,17 @@ Feature: register a residue generator
     When I register a new generator of residue with the address "Bubble Street number 7"
     Then The new residue generator is properly stored by the system
 
+@ignore
   Scenario: new valid generator web
     Given I am at the register new generator page
     When I fill the generator details with the address "Bubble Street number 7"
     And I register the new generator
     Then I should see a message indicating that the action was successful
 
+@ignore
   Scenario: duplicated residue generator
-    Given The system has a generator with the address "Bubble Street number 7" already stored
-    When I register a different generator of residue with the address "Bubble Street number 7"
+    Given The system has a generator with the address "Bubble road number 4" already stored
+    When I register a different generator of residue with the address "Bubble road number 4"
     Then The new residue generator is not stored twice by the system
 
   Scenario: duplicated residue generator web

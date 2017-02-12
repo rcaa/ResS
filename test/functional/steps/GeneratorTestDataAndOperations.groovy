@@ -52,7 +52,7 @@ class GeneratorTestDataAndOperations{
     static public void createGenerator(String address){
         def cont = new ResidueGeneratorController()
         def novoGenerator = findGeneratorByAddress(address)
-        cont.params << novoGenerator
+        cont.params << novoGenerator as ResidueGenerator
         cont.create()
         cont.save()
         cont.response.reset()

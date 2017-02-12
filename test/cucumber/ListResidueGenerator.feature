@@ -5,12 +5,13 @@ Feature: List of Residue Generator
   so that I know all Residuo Generators and which Residue Generators are a priority
 
 
-#if($list)
+@ignore
   Scenario: listing Residue Generators
     Given the system has a Residue Generator at "Av. Jequitiboca" in it
     When the system list all existing Residue Generators
     Then the system list contains "Av. Jequitiboca"
 
+@ignore
   Scenario: system sort list of existing Residue Generator by average daily meal
     Given the system has a Residue Generator at "Av. Capacanama" with average daily meal of "10"
     And the system has a Residue Generator at "Av. Brodewai" with average daily meal of "5"

@@ -50,7 +50,7 @@ class BootStrap {
         stockHarvestCompany3.save(failOnError: true);
 
         def area2 = new ResidueGenerator(
-                nameGenerator:"CCEN/Área II",
+                nameGenerator:"CCEN/Area II",
                 type: "Cantina",
                 cnpj: "testecnpj2",
                 addressGenerator: "UFPE1",
@@ -61,7 +61,7 @@ class BootStrap {
         area2.save(failOnError: true)
 
         def bomCafe = new ResidueGenerator(
-                nameGenerator:"Bom Café – CTG",
+                nameGenerator:"Bom Cafe – CTG",
                 type: "Restaurante",
                 cnpj: "testecnpj3",
                 addressGenerator: "UFPE2",
@@ -101,7 +101,7 @@ class BootStrap {
         quiosqueCssa.save(failOnError: true)
 
         def planetRefeicoesCTG = new ResidueGenerator(
-                nameGenerator:"Planet Refeições – CTG",
+                nameGenerator:"Planet Refeicoes – CTG",
                 type: "Restaurante",
                 cnpj: "testecnpj7",
                 addressGenerator: "UFPE6",
@@ -111,7 +111,7 @@ class BootStrap {
         planetRefeicoesCTG.save(failOnError: true)
 
         def planetRefeicoesCCS = new ResidueGenerator(
-                nameGenerator:"Planet Refeições – CCS",
+                nameGenerator:"Planet Refeicoes – CCS",
                 type: "Restaurante",
                 cnpj: "testecnpj8",
                 addressGenerator: "UFPE7",
@@ -121,7 +121,7 @@ class BootStrap {
 
         planetRefeicoesCCS.save(failOnError: true)
         def planetRefeicoesCE = new ResidueGenerator(
-                nameGenerator:"Planet Refeições – CE",
+                nameGenerator:"Planet Refeicoes – CE",
                 type: "Restaurante",
                 cnpj: "testecnpj9",
                 addressGenerator: "UFPE8",
@@ -142,7 +142,7 @@ class BootStrap {
         chefPlataoCCSA.save(failOnError: true)
 
         def chefPlataoCFCH = new ResidueGenerator(
-                nameGenerator:"Chef Platão – CFCH",
+                nameGenerator:"Chef Platao – CFCH",
                 type: "Restaurante",
                 cnpj: "testecnpj11",
                 addressGenerator: "UFPE10",
@@ -161,7 +161,7 @@ class BootStrap {
         aquarela.save(failOnError: true)
 
         def sinhaPimenta = new ResidueGenerator(
-                nameGenerator:"Sinhá Pimenta – CCB",
+                nameGenerator:"Sinha Pimenta – CCB",
                 type: "Restaurante",
                 cnpj: "testecnpj13",
                 addressGenerator: "UFPE12",

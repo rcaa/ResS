@@ -4,9 +4,9 @@ Feature: Edit the residue generator registration data
   so that i can keep my registration data up to date
 
   #if ($ All the fields are filled correctly)
-
+@ignore
   Scenario: All the fields are filled correctly
-    Given the system has a residue generator with the address "Bubble Street number 4"
+    Given the system has a residue generator with the address "Bubble road number 4"
     When I change it to "Fool street number 0"
     Then the system should store the residue generator with the new address in the data base
   #end
@@ -21,16 +21,17 @@ Feature: Edit the residue generator registration data
     Then  I should see a message indicating that the changes are properly stored
   #end
 
+@ignore
   Scenario: Some of the required registration data fields are blank
-    Given the system has a residue generator with the address "Bubble Street number 4"
+    Given the system has a residue generator with the address "Bubble road number 4"
     When  I do not fill the address field
     And   confirm my changes
     Then  the system should not store the changes
 
-
+@ignore
   Scenario: The registration data changes results in an existing residue generator
-    Given the system has a residue generator with the address "Donut Street number 5"
-    When I change it address to "Bubble Street number 4"
+    Given the system has a residue generator with the address "Bubble road number 4"
+    When I change it address to "Bubble road number 4"
     Then the system should not store the changes
 
 
