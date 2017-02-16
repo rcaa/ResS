@@ -3,6 +3,11 @@ Feature: Gerar historico de coleta
   I want to gerar um historico de coletas
   So that eu posso saber o desempenho da minha empresa
 
+  Scenario: adicionar coleta com campo volume em branco
+  	Given o sistema nao possui uma coleta com nome "Boa Vista" e data "19/10/2030"
+  	When tento criar uma coleta com nome "Boa Vista" e data "19/10/2030" sem preencher o campo de volume 
+  	Then a nova coleta nao e armazenada pelo sistema
+  	
 @ignore
   Scenario: adicionar coleta ja existente
     Given ja existe uma coleta com nome "RU" e data "08/05/2015"
@@ -83,3 +88,4 @@ Feature: Gerar historico de coleta
     And seleciono esta coleta
     When aperto o botao Delete
     Then estou na pagina de listagem e esta coleta nao consta mais
+    

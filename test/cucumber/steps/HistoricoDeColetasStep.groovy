@@ -143,3 +143,18 @@ When(~'^aperto o botao Delete$') { ->
 Then(~'^estou na pagina de listagem e esta coleta nao consta mais$') { ->
     at ColetaListPage
 }
+
+Given(~/^o sistema nao possui uma coleta com nome "(.*?)" e data "(.*?)"$/) { String arg1, String arg2 ->
+	// Write code here that turns the phrase above into concrete actions
+	throw new PendingException()
+}
+
+When(~/^tento criar uma coleta com nome "(.*?)" e data "(.*?)" sem preencher o campo de volume$/) { String arg1, String arg2 ->
+	// Write code here that turns the phrase above into concrete actions
+	throw new PendingException()
+}
+
+Then(~/^a nova coleta nao e armazenada pelo sistema$/) { ->
+	// Write code here that turns the phrase above into concrete actions
+	throw new PendingException()
+}
