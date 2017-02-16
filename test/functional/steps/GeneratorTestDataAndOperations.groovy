@@ -71,6 +71,20 @@ class GeneratorTestDataAndOperations{
         cont.save()
         cont.response.reset()
     }
+	
+	static public void createGenerator(String name, int average){
+		def cont = new ResidueGeneratorController()
+		def newGenerator = [nome: name,
+							type: "Restaurante",
+							cnpj: "testecnpj1",
+							addressGenerator: "Bubble Street number 7",
+							averageMonthlyMeals: average,
+							averageDailyMeals: 0]
+		cont.params << newGenerator
+		cont.create()
+		cont.save()
+		cont.response.reset()
+	}
 
     static public void createGeneratorCnpj(String CNPJ){
         def cont = new ResidueGeneratorController()

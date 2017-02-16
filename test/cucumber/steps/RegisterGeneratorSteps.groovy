@@ -7,6 +7,10 @@ import static cucumber.api.groovy.EN.*
 /**
  * Created by Arthur on 01/05/2015.
  */
+When(~/^I register a different generator of residue with the address "(.*?)" and average daily meals "(.*?)"$/) { String address, int average ->
+	endereco = address
+    GeneratorTestDataAndOperations.createGenerator(address,average)
+}
 
 Given(~'^The system has no generator with the address "([^"]*)"$') { String address ->
     generator = ResidueGenerator.findByAddressGenerator(address)

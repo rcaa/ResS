@@ -2,6 +2,11 @@ Feature: register a residue generator
   As an administrator of the ResS system
   I want to register residue generators
   So that I can use and manage information of these generators
+  
+  Scenario: negative numbers at info of residue generator
+  	Given The system has no generator with the address "Bubble road number 5"
+  	When I register a different generator of residue with the address "Bubble road number 5" and average daily meals "-1"
+  	Then The new residue generator is not stored by the system
 
 @ignore
   Scenario: new valid generator
