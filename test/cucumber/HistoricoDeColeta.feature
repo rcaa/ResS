@@ -4,8 +4,8 @@ Feature: Gerar historico de coleta
   So that eu posso saber o desempenho da minha empresa
 
   Scenario: adicionar coleta com campo volume em branco
-  	Given o sistema nao possui uma coleta com nome "Boa Vista" e data "19/10/2030"
-  	When tento criar uma coleta com nome "Boa Vista" e data "19/10/2030" sem preencher o campo de volume 
+  	Given o sistema nao possui uma coleta com data "10/19/2010" e nome "Boa Vista" 
+  	When tento criar uma coleta com data "10/19/2010", nome "Boa Vista", e campo de volume null
   	Then a nova coleta nao e armazenada pelo sistema
   	
 @ignore

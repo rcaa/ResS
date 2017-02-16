@@ -34,6 +34,15 @@ class HistoricoTestDataAndOperations {
         cont.save()
         cont.response.reset()
     }
+	
+	static public void CreateHistoricoWithoutVolume(String rest,@Format("dd/MM/yyyy") Date dia){
+		def cont = new ColetaController()
+
+		cont.params << [nome: rest, data: dia, volume: null]
+		cont.create()
+		cont.save()
+		cont.response.reset()
+	}
 
     static public void editColeta(int volume,Coleta coleta){
         def colet = coleta
