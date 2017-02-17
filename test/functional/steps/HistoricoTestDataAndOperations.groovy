@@ -23,6 +23,12 @@ class HistoricoTestDataAndOperations {
             coleta.data == date
         }
     }
+	
+	static public def findColetaByNome(String rest) {
+		coletas.find { coleta ->
+			coleta.nome == rest
+		}
+	}
 
 
 

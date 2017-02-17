@@ -7,10 +7,11 @@ Feature: Create a harvest solicitation
     Given there is no active harvest solicitation for the generator which address is "Elm Street number 13"
     When  I submit the harvest solicitation with "30" litre of residue
     Then  the system should store the solicitation
-
+    
+@ignore
  Scenario: There is no residues to collect
- 	 Given I am at the harvest solicitation creation page
- 	 When I set the amount of residues with 0
+ 	 Given there is no active harvest solicitation for the generator which address is "Rua qualquer"
+ 	 When I submit the harvest solicitation with "0" litre of residue
  	 Then the system should not create a harvest solicitation
  	 
   @ignore

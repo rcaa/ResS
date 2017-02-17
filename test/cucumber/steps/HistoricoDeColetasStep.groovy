@@ -21,6 +21,20 @@ And (~'^clico em adicionar coleta do dia$'){ ->
 Then (~'^eh adicionada com sucesso$'){ ->
 }
 
+Given(~/^nao existe uma coleta com nome "(.*?)$/) { String name ->
+    assert Coleta.findByNome(name) == null
+}
+
+When(~/^eu crio uma nova coleta com nome "(.*?)" e data "(.*?)"$/) {String nome, @Format("dd/MM/yyyy") Date dia ->
+	coleta = new Coleta()
+    coleta.name = nome
+    coleta.data = dia
+}
+
+Then(~/^a coleta com nome "(.*?)" nao sera criada$/) { String name ->
+	assert Coleta.findByNome(name) == null
+}
+
 
 Given(~'^nao foi criada um relatorio de coleta do dia "([^"]*)" do restaurante "([^"]*)"$'){@Format("dd/MM/yyyy") Date dia, String restaurante ->
     coleta = Coleta.findByDataAndNome(dia,restaurante)

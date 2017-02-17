@@ -3,6 +3,12 @@ Feature: Gerar historico de coleta
   I want to gerar um historico de coletas
   So that eu posso saber o desempenho da minha empresa
 
+
+  Scenario: criar coleta sem adicionar nome
+  	Given nao existe uma coleta com nome ""
+  	When eu crio uma nova coleta com nome "" e data "08/05/2015"
+  	Then a coleta com nome "" nao sera criada
+
 @ignore
   Scenario: adicionar coleta ja existente
     Given ja existe uma coleta com nome "RU" e data "08/05/2015"
