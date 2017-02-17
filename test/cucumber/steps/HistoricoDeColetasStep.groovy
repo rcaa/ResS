@@ -149,7 +149,7 @@ Given(~/^o sistema nao possui uma coleta com data "(.*?)" e nome "(.*?)"$/) {@Fo
 	assert coleta == null
 }
 
-When(~/^tento criar uma coleta com data "(.*?)", nome "(.*?)", e campo de volume null$/) {@Format("dd/MM/yyyy") Date dia, String rest ->
+When(~/^crio uma coleta com data "(.*?)", nome "(.*?)", e campo de volume null$/) {@Format("dd/MM/yyyy") Date dia, String rest ->
 	data = dia
 	restaurante = rest
 	HistoricoTestDataAndOperations.CreateHistoricoWithoutVolume(rest,data)

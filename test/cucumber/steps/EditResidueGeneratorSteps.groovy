@@ -27,6 +27,10 @@ Given(~'^I am at the residue generator edit page'){ ->
     at ResidueGeneratorEditPage
 }
 
+When(~/^I fill the name field with "(.*?)"$/) { String name ->
+	page.fillNameField(name)
+}
+
 When(~'^I fill the address field with "([^"]*)"'){String address ->
     page.fillAddressField(address)
 }

@@ -5,7 +5,7 @@ Feature: Gerar historico de coleta
 
   Scenario: adicionar coleta com campo volume em branco
   	Given o sistema nao possui uma coleta com data "10/19/2010" e nome "Boa Vista" 
-  	When tento criar uma coleta com data "10/19/2010", nome "Boa Vista", e campo de volume null
+  	When crio uma coleta com data "10/19/2010", nome "Boa Vista", e campo de volume null
   	Then a nova coleta nao e armazenada pelo sistema
   	
 @ignore
