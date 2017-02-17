@@ -40,3 +40,8 @@ Feature: register a residue generator
     When I fill the generator details with some fields left incomplete
     And I register the new generator
     Then I should see an error message
+    
+  Scenario: new residue generator with duplicated cnpj
+  	Given o sistema possui um gerador de residuos com o cnpj "testecnpj1"
+  	When eu crio um novo gerador de residuos com o nome "Boa Vista" e o cnpj "testecnpj1"
+  	Then o sistema nao armazena o novo gerador de residuos

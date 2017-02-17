@@ -1,5 +1,7 @@
 package steps
 
+import org.hibernate.annotations.GeneratorType;
+
 import pages.GeneratorCreatePage
 import residueGenerator.ResidueGenerator
 import static cucumber.api.groovy.EN.*
@@ -94,3 +96,26 @@ When(~'I fill the generator details with some fields left incomplete$'){->
     page.fillGeneratorDetailsIncomplete(generator)
 
 }
+
+Given(~/^o sistema possui um gerador de residuos com o cnpj "(.*?)"$/) { String cnpj ->
+        ResidueGenerator newGenerator = [nome: "RU",
+                            type: "Restaurante",
+                            cnpj: cnpj,
+                            addressGenerator: "Bubble Street number 7",
+                            averageMonthlyMeals: 0,
+                            averageDailyMeals: 0]
+		newGenerator.save(flush: true)
+		
+		assert ResidueGenerator.findByCnpj(cnpj)
+}
+
+When(~/^eu crio um novo gerador de residuos com o nome "(.*?)" e o cnpj "(.*?)"$/) { String nome, String cnpj ->
+	GeneratorTestDataAndOperations.createGeneratorNomeCnpj(nome, cnpj)
+}
+
+Then(~/^o sistema nao armazena o novo gerador de residuos$/) { ->
+	gerador = GeneratorTestDataAndOperations.findGeneratorByNomeCnpj(nome, cnpj)
+	assert gerador == null
+	
+}
+
