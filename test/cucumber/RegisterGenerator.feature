@@ -7,6 +7,11 @@ Feature: register a residue generator
   	Given The system has no generator with the address "Bubble road number 5"
   	When I register a different generator of residue with the address "Bubble road number 5" and average daily meals "-1"
   	Then The new residue generator is not stored by the system
+  
+  Scenario: reaching residue generator list page from the create page
+    Given I am at the register new generator page
+    When I go to the List Residue Generators page
+    Then I am at the Residue Generator List page
 
 @ignore
   Scenario: new valid generator
