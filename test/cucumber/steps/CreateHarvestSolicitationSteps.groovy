@@ -23,6 +23,7 @@ Then(~'the system should store the solicitation$'){ ->
 }
 
 
+
 //----------------------------------------- GUI TESTS -------------------------------------------
 
 Given(~'I am at the harvest solicitation creation page$'){ ->
