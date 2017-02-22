@@ -35,6 +35,13 @@ Then (~'o relatorio eh adicionado ao historico de coletas$'){ ->
     assert Coleta.findByDataAndNome(data,restaurante) != null
 }
 
+When (~'^preencho o campo volume com valor "([^"]*)"$'){String volume -> 
+	page.fillColetaInfo(volume)
+}
+
+Then(~/^eu vejo uma menssagem de erro$/) { ->
+	page.hasInvalidMessage()
+}
 
 Given (~'^ja foi criado o relatorio de coleta do dia "([^"]*)" do restaurante "([^"]*)"$'){@Format("dd/MM/yyyy") Date dia, String restaurante ->
    dat = dia

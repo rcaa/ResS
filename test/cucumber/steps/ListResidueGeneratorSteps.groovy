@@ -59,11 +59,10 @@ Given(~'^I am at the Residue Generator Show page$'){ ->
 }
 
 When(~'^I go to the List Residue Generators page$'){->
-    page.selectListResidueGenerators()
+	to ResidueGeneratorListPage
 }
 
 Then(~'^I am at the Residue Generator List page$'){->
-    to ResidueGeneratorListPage
     at ResidueGeneratorListPage
 }
 
