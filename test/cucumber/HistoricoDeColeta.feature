@@ -2,6 +2,12 @@ Feature: Gerar historico de coleta
   As a membro da empresa de coleta
   I want to gerar um historico de coletas
   So that eu posso saber o desempenho da minha empresa
+ 
+ 
+ Scenario: adicionar coleta com dados invalidos em volume
+ Given estou na pagina de adicionar coleta
+ When preencho o campo volume com valor "dois"
+ Then eu vejo uma menssagem de erro
 
 @ignore
   Scenario: adicionar coleta ja existente
