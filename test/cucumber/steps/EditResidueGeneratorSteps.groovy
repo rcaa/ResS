@@ -82,17 +82,3 @@ Then(~'^I should see a message indicating that an error occurred$'){ ->
     def errorBoolean = page.hasInvalidMessage()
     assert errorBoolean != false
 }
-
-//------------------------------------------------CREATE FAIL------------------------------------------------------------
-
-Given(~/^doesn't exist a residue generator with address "(.*?)" stored in the system$/) { String address ->
-	assert ResidueGenerator.findByAddressGenerator(address) != null
-}
-
-When(~/^I create a residue generator with address "(.*?)"$/) { String arg1 ->
-	
-}
-
-Then(~/^the new residue is not stored$/) { ->
-	
-}

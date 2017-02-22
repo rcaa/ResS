@@ -94,3 +94,16 @@ When(~'I fill the generator details with some fields left incomplete$'){->
     page.fillGeneratorDetailsIncomplete(generator)
 
 }
+
+Given(~/^doesn't exist a residue generator with address "(.*?)" stored in the system$/) { String address ->
+	assert ResidueGenerator.findByAddressGenerator(address) != null
+}
+
+When(~/^I create a residue generator with address "(.*?)"$/) { String address ->
+	resGen = new ResidueGenerator()
+	resGen.address =  address
+}
+
+Then(~/^the new residue is not stored$/) { ->
+	assert ResidueGenerator.findByAddressGenerator(address) != null
+}

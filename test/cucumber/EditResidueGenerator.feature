@@ -50,9 +50,4 @@ Feature: Edit the residue generator registration data
     And fill all the required fields correctly
     And submit my changes
     Then I should see a message indicating that an error occurred
-    
-  Scenario: create a residue generator with address null
-  	Given doesn't exist a residue generator with address "" stored in the system
-  	When I create a residue generator with address ""
-  	Then the new residue is not stored
 

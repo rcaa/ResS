@@ -40,3 +40,8 @@ Feature: register a residue generator
     When I fill the generator details with some fields left incomplete
     And I register the new generator
     Then I should see an error message
+  
+  Scenario: create a residue generator with address null
+  	Given doesn't exist a residue generator with address "" stored in the system
+  	When I create a residue generator with address ""
+  	Then the new residue is not stored
