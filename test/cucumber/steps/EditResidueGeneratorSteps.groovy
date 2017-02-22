@@ -27,10 +27,6 @@ Given(~'^I am at the residue generator edit page'){ ->
     at ResidueGeneratorEditPage
 }
 
-When(~/^I fill the name field with "(.*?)"$/) { String name ->
-	page.fillNameField(name)
-}
-
 When(~'^I fill the address field with "([^"]*)"'){String address ->
     page.fillAddressField(address)
 }
@@ -59,6 +55,10 @@ When(~'^I do not fill the address field$'){ ->
     nullAddress = null
 }
 
+When(~/^I fill the name field with "(.*?)"$/) { String name ->
+	page.fillNameField(name)
+}
+
 And(~'^confirm my changes$'){ ->
     GeneratorTestDataAndOperations.editGenerator(nullAddress,generator)
 }
@@ -81,4 +81,18 @@ Then(~'^I should see a message indicating that an error occurred$'){ ->
     at ResidueGeneratorEditPage
     def errorBoolean = page.hasInvalidMessage()
     assert errorBoolean != false
+}
+
+//------------------------------------------------CREATE FAIL------------------------------------------------------------
+
+Given(~/^doesn't exist a residue generator with address "(.*?)" stored in the system$/) { String address ->
+	assert ResidueGenerator.findByAddressGenerator(address) != null
+}
+
+When(~/^I create a residue generator with address "(.*?)"$/) { String arg1 ->
+	
+}
+
+Then(~/^the new residue is not stored$/) { ->
+	
 }
