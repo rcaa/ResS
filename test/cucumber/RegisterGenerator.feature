@@ -44,4 +44,4 @@ Feature: register a residue generator
   Scenario: create a residue generator with address null
   	Given doesn't exist a residue generator with address "" stored in the system
   	When I create a residue generator with address ""
-  	Then the new residue is not stored
+  	Then the new residue with address "" is not stored
