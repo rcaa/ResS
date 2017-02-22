@@ -21,6 +21,14 @@ And (~'^clico em adicionar coleta do dia$'){ ->
 Then (~'^eh adicionada com sucesso$'){ ->
 }
 
+When (~'^preencho o campo volume com valor "(.*?)"$'){ String volume ->
+	page.fillColetaInfo(volume)
+}
+
+Then(~/^eu vejo uma menssagem de erro$/) { ->
+	page.hasInvalidMessage()
+}
+
 Given(~/^nao existe uma coleta com nome "(.*?)$/) { String name ->
     assert Coleta.findByNome(name) == null
 }

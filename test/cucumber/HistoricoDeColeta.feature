@@ -8,6 +8,12 @@ Feature: Gerar historico de coleta
   	Given nao existe uma coleta com nome ""
   	When eu crio uma nova coleta com nome "" e data "08/05/2015"
   	Then a coleta com nome "" nao sera criada
+  	
+  Scenario: adicionar coleta com dados invalidos em volume
+    Given estou na pagina de adicionar coleta
+    When preencho o campo volume com valor "dois"
+    Then eu vejo uma menssagem de erro
+  	
 
 @ignore
   Scenario: adicionar coleta ja existente
