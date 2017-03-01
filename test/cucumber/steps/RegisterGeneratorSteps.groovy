@@ -104,18 +104,24 @@ Given(~/^o sistema possui um gerador de residuos com o cnpj "(.*?)"$/) { String 
                             addressGenerator: "Bubble Street number 7",
                             averageMonthlyMeals: 0,
                             averageDailyMeals: 0]
-		newGenerator.save(flush: true)
-		
-		assert ResidueGenerator.findByCnpj(cnpj)
+		newGenerator.save()
 }
 
 When(~/^eu crio um novo gerador de residuos com o nome "(.*?)" e o cnpj "(.*?)"$/) { String nome, String cnpj ->
-	GeneratorTestDataAndOperations.createGeneratorNomeCnpj(nome, cnpj)
+	nomeParametro = nome
+	cnpjParametro = cnpj
+	ResidueGenerator newGenerator = [nome: nome,
+                            type: "Restaurante",
+                            cnpj: cnpj,
+                            addressGenerator: "Bubble Street number 7",
+                            averageMonthlyMeals: 0,
+                            averageDailyMeals: 0]
+		newGenerator.save()
 }
 
 Then(~/^o sistema nao armazena o novo gerador de residuos$/) { ->
-	gerador = GeneratorTestDataAndOperations.findGeneratorByNomeCnpj(nome, cnpj)
-	assert gerador == null
+	gerador = ResidueGenerator.findByNameGeneratorAndCnpj(nomeParametro, cnpjParametro)
+	assert gerador == null 
 	
 }
 
