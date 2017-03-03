@@ -83,3 +83,8 @@ Feature: Gerar historico de coleta
     And seleciono esta coleta
     When aperto o botao Delete
     Then estou na pagina de listagem e esta coleta nao consta mais
+    
+  Scenario: adicionar coleta com campo nome vazio
+  	Given eu estou na pagina de adicionar coleta
+  	When eu adiciono uma nova coleta com o nome ""
+  	Then a coleta nao e adicionada

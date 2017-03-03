@@ -143,3 +143,21 @@ When(~'^aperto o botao Delete$') { ->
 Then(~'^estou na pagina de listagem e esta coleta nao consta mais$') { ->
     at ColetaListPage
 }
+
+Given(~/^eu estou na pagina de adicionar coleta$/) { ->
+	to HistoricoPage
+	at HistoricoPage
+}
+
+def nomeParametro
+
+When(~/^eu adiciono uma nova coleta com o nome "(.*?)"$/) { String nome ->
+	nomeParametro = nome
+	page.fillColetaBlankName(nome)
+	page.selectAdicionarColeta();
+}
+
+Then(~/^a coleta nao e adicionada$/) { ->
+	assert Coleta.findByNome(nomeParametro) == null
+	
+}
