@@ -165,6 +165,7 @@ Then(~'^estou na pagina de listagem e esta coleta nao consta mais$') { ->
     at ColetaListPage
 }
 
+<<<<<<< HEAD
 Given(~/^o sistema nao possui uma coleta com data "(.*?)" e nome "(.*?)"$/) {@Format("dd/MM/yyyy") Date data, String rest ->
 	coleta = Coleta.findByDataAndNome(data,rest)
 	assert coleta == null
@@ -179,4 +180,22 @@ When(~/^crio uma coleta com data "(.*?)", nome "(.*?)", e campo de volume null$/
 Then(~/^a nova coleta nao e armazenada pelo sistema$/) { ->
 	coleta = Coleta.findByDataAndNome(data,restaurante)
     assert coleta == null
+}
+
+Given(~/^eu estou na pagina de adicionar coleta$/) { ->
+	to HistoricoPage
+	at HistoricoPage
+}
+
+def nomeParametro
+
+When(~/^eu adiciono uma nova coleta com o nome "(.*?)"$/) { String nome ->
+	nomeParametro = nome
+	page.fillColetaBlankName(nome)
+	page.selectAdicionarColeta();
+}
+
+Then(~/^a coleta nao e adicionada$/) { ->
+	assert Coleta.findByNome(nomeParametro) == null
+	
 }

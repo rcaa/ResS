@@ -55,3 +55,8 @@ Feature: register a residue generator
   	Given doesn't exist a residue generator with address "" stored in the system
   	When I create a residue generator with address ""
   	Then the new residue with address "" is not stored
+
+  Scenario: new residue generator with duplicated cnpj
+  	Given o sistema possui um gerador de residuos com o cnpj "35401447000157"
+  	When eu crio um novo gerador de residuos com o nome "Boa Vista" e o cnpj "35401447000157"
+  	Then o sistema nao armazena o novo gerador de residuos

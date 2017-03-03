@@ -1,5 +1,7 @@
 package steps
 
+import org.hibernate.annotations.GeneratorType;
+
 import pages.GeneratorCreatePage
 import residueGenerator.ResidueGenerator
 import static cucumber.api.groovy.EN.*
@@ -98,6 +100,7 @@ When(~'I fill the generator details with some fields left incomplete$'){->
     page.fillGeneratorDetailsIncomplete(generator)
 
 }
+<<<<<<< HEAD
 
 Given(~/^doesn't exist a residue generator with address "(.*?)" stored in the system$/) { String address ->
 	assert ResidueGenerator.findByAddressGenerator(address) == null
@@ -110,4 +113,45 @@ When(~/^I create a residue generator with address "(.*?)"$/) { String address ->
 
 Then(~/^the new residue with address "(.*?)" is not stored$/) { String address ->
 	assert ResidueGenerator.findByAddressGenerator(address) == null
+}
+
+def newGenerator
+def newGenerator2
+def nomeParametro
+def cnpjParametro
+
+Given(~/^o sistema possui um gerador de residuos com o cnpj "(.*?)"$/) { String cnpj ->
+
+		newGenerator = new ResidueGenerator()
+		newGenerator.setNameGenerator("RU")
+		newGenerator.setType("Restaurante")
+		newGenerator.setCnpj(cnpj)
+		newGenerator.setAddressGenerator("Bubble Street number 7")
+		newGenerator.setAverageDailyMeals(0)
+		newGenerator.setAverageMonthlyMeals(0)
+		newGenerator.save(flush: true)
+		
+		assert ResidueGenerator.findByCnpj(cnpj)
+		
+}
+
+When(~/^eu crio um novo gerador de residuos com o nome "(.*?)" e o cnpj "(.*?)"$/) { String nome, String cnpj ->
+	nomeParametro = nome
+	cnpjParametro = cnpj
+		newGenerator2 = new ResidueGenerator()
+		newGenerator2.setNameGenerator(nome)
+		newGenerator2.setType("Restaurante")
+		newGenerator2.setCnpj(cnpj)
+		newGenerator2.setAddressGenerator("Bubble Street number 7")
+		newGenerator2.setAverageDailyMeals(0)
+		newGenerator2.setAverageMonthlyMeals(0)
+		newGenerator2.save(flush: true)
+		
+
+}
+
+Then(~/^o sistema nao armazena o novo gerador de residuos$/) { ->
+	gerador = ResidueGenerator.findByNameGeneratorAndCnpj(nomeParametro, cnpjParametro)
+	assert gerador == null 
+	
 }
