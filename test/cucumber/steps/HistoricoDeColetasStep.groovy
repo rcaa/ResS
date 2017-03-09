@@ -165,7 +165,6 @@ Then(~'^estou na pagina de listagem e esta coleta nao consta mais$') { ->
     at ColetaListPage
 }
 
-<<<<<<< HEAD
 Given(~/^o sistema nao possui uma coleta com data "(.*?)" e nome "(.*?)"$/) {@Format("dd/MM/yyyy") Date data, String rest ->
 	coleta = Coleta.findByDataAndNome(data,rest)
 	assert coleta == null

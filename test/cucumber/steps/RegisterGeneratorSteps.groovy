@@ -100,7 +100,6 @@ When(~'I fill the generator details with some fields left incomplete$'){->
     page.fillGeneratorDetailsIncomplete(generator)
 
 }
-<<<<<<< HEAD
 
 Given(~/^doesn't exist a residue generator with address "(.*?)" stored in the system$/) { String address ->
 	assert ResidueGenerator.findByAddressGenerator(address) == null
