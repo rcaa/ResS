@@ -30,11 +30,6 @@ class HistoricoPage extends Page{
 
     }
 
-    def selectAdicionarColeta(){
-        $("input", name: "create").click()
-    }
-	
-
 	def boolean hasInvalidMessage(){
 		
 				def invalidField = $('input:invalid')
@@ -46,5 +41,16 @@ class HistoricoPage extends Page{
 				}
 	}
 
+    def selectAdicionarColeta(){
+        $("input", name: "create").click()
+    }
+	
+	def fillColetaBlankName(String nome){
+		$("form").nome = nome
+		$("form").data_day = "5"
+		$("form").data_month = "3"
+		$("form").data_year = "2016"
+		$("form").volume = 75
+	}
 }
 

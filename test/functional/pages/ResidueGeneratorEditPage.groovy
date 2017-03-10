@@ -15,6 +15,10 @@ class ResidueGeneratorEditPage extends Page{
     def fillAddressField(String address){
         $("form").addressGenerator = address
     }
+	
+	def fillNameField(String name){
+		$("form").nameGenerator = name
+	}
 
     def fillOtherFields() {
         GeneratorTestDataAndOperations GTDO = new GeneratorTestDataAndOperations();

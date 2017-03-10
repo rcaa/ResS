@@ -55,6 +55,10 @@ When(~'^I do not fill the address field$'){ ->
     nullAddress = null
 }
 
+When(~/^I fill the name field with "(.*?)"$/) { String name ->
+	page.fillNameField(name)
+}
+
 And(~'^confirm my changes$'){ ->
     GeneratorTestDataAndOperations.editGenerator(nullAddress,generator)
 }
