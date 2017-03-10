@@ -10,6 +10,10 @@ class UserController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def show(User userInstance) {
+        respond userInstance
+    }
+
     def create() {
         respond new User(params)
     }
@@ -36,7 +40,5 @@ class UserController {
             '*' { respond userInstance, [status: CREATED] }
         }
     }
-
-
 
 }
