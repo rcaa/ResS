@@ -4,6 +4,7 @@ import org.hibernate.annotations.GeneratorType;
 
 import pages.GeneratorCreatePage
 import residueGenerator.ResidueGenerator
+import residueGenerator.ResidueGeneratorController;
 import static cucumber.api.groovy.EN.*
 
 /**
@@ -121,16 +122,16 @@ def cnpjParametro
 
 Given(~/^o sistema possui um gerador de residuos com o cnpj "(.*?)"$/) { String cnpj ->
 
-		newGenerator = new ResidueGenerator()
-		newGenerator.setNameGenerator("RU")
-		newGenerator.setType("Restaurante")
-		newGenerator.setCnpj(cnpj)
-		newGenerator.setAddressGenerator("Bubble Street number 7")
-		newGenerator.setAverageDailyMeals(0)
-		newGenerator.setAverageMonthlyMeals(0)
-		newGenerator.save(flush: true)
+	/*	ResidueGeneratorController controller = new ResidueGeneratorController()
+		controller.params << [nameGenerator: "RU", type: "Restaurante", cnpj: cnpj, addressGenerator: "Bubble Street number 7", averageDailyMeals: 0, averageMonthlyMeals: 0]
+		controller.request.setContent(new byte[1000])
+		controller.create()
+		controller.save()
+		controller.response.reset()
+*/
+		///newGenerator.save(flush: true)
 		
-		assert ResidueGenerator.findByCnpj(cnpj)
+		assert ResidueGenerator.findByCnpj(cnpj) != null
 		
 }
 
@@ -145,6 +146,8 @@ When(~/^eu crio um novo gerador de residuos com o nome "(.*?)" e o cnpj "(.*?)"$
 		newGenerator2.setAverageDailyMeals(0)
 		newGenerator2.setAverageMonthlyMeals(0)
 		newGenerator2.save(flush: true)
+		
+	assert ResidueGenerator.findByNameGeneratorAndCnpj(nome, cnpj)
 		
 
 }

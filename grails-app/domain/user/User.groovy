@@ -16,7 +16,7 @@ class User {
         name nullable: false, blank: false
         address nullable: false, blank: false
         login nullable: false, blank: false, unique: true
-        password nullable:false, blank: false, minSize: 6
+        password nullable:false, blank: false, minSize: 6, password: true
     }
 
 }

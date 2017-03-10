@@ -9,7 +9,7 @@ class GeneratorTestDataAndOperations{
 
             [nameGenerator:"RU",
              type: "Restaurante",
-             cnpj: "testecnpj1",
+             cnpj: "35401447000157",
              addressGenerator: "Bubble Street number 7",
              averageMonthlyMeals: 0,
              averageDailyMeals: 0],
