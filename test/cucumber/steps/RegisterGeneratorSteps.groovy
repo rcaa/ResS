@@ -96,29 +96,26 @@ When(~'I fill the generator details with some fields left incomplete$'){->
     page.fillGeneratorDetailsIncomplete(generator)
 
 }
-def newGenerator
-def newGenerator2
-def nomeParametro
-def cnpjParametro
 
 Given(~/^o sistema possui um gerador de residuos com o cnpj "(.*?)"$/) { String cnpj ->
 
-		newGenerator = new ResidueGenerator()
+	/*
+		def newGenerator = new ResidueGenerator()
 		newGenerator.setNameGenerator("RU")
 		newGenerator.setType("Restaurante")
 		newGenerator.setCnpj(cnpj)
 		newGenerator.setAddressGenerator("Bubble Street number 7")
 		newGenerator.setAverageDailyMeals(0)
 		newGenerator.setAverageMonthlyMeals(0)
-		newGenerator.save(flush: true)
+		newGenerator.save(flush: true)		*/
 		
-		assert ResidueGenerator.findByCnpj(cnpj)
+		assert ResidueGenerator.findByCnpj(cnpj) != null
 		
 }
 
 When(~/^eu crio um novo gerador de residuos com o nome "(.*?)" e o cnpj "(.*?)"$/) { String nome, String cnpj ->
-	nomeParametro = nome
-	cnpjParametro = cnpj
+		
+	/*
 		newGenerator2 = new ResidueGenerator()
 		newGenerator2.setNameGenerator(nome)
 		newGenerator2.setType("Restaurante")
@@ -126,13 +123,15 @@ When(~/^eu crio um novo gerador de residuos com o nome "(.*?)" e o cnpj "(.*?)"$
 		newGenerator2.setAddressGenerator("Bubble Street number 7")
 		newGenerator2.setAverageDailyMeals(0)
 		newGenerator2.setAverageMonthlyMeals(0)
-		newGenerator2.save(flush: true)
+		newGenerator2.save(flush: true)		*/
+	
+	assert ResidueGenerator.findByNameGeneratorAndCnpj(nome, cnpj) != null
 		
 
 }
 
-Then(~/^o sistema nao armazena o novo gerador de residuos$/) { ->
-	gerador = ResidueGenerator.findByNameGeneratorAndCnpj(nomeParametro, cnpjParametro)
+Then(~/^o sistema nao armazena o novo gerador de residuos com o nome "(.*?)" e o cnpj "(.*?)"$/) {String nome, String cnpj ->
+	gerador = ResidueGenerator.findByNameGeneratorAndCnpj(nome, cnpj)
 	assert gerador == null 
 	
 }
