@@ -12,9 +12,11 @@ class Coleta {
     static constraints = {
 
         nome blank: true // no caso de ser ecoponto pode não ter nome
-        data blank: false, nullable: false
+        data blank: false, nullable: false, min: new Date()
         volume  blank: false, nullable: false, min:1
-    }
+    
+	}
+	
     void setName(String novoNome){
         if(Coleta.findByNomeAndData(novoNome,this.data) == null){
             this.nome = novoNome
