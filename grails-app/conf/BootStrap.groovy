@@ -7,7 +7,7 @@ class BootStrap {
         def ru = new ResidueGenerator(
                 nameGenerator:"RU",
                 type: "Restaurante",
-                cnpj: "testecnpj1",
+                cnpj: "000000000001",
                 addressGenerator: "Bubble road number 4",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -22,7 +22,7 @@ class BootStrap {
         def stockResidueGenerator = new ResidueGenerator(
                 nameGenerator: "Stock Food",
                 type: "Restaurante",
-                cnpj: "0000000",
+                cnpj: "000000000002",
                 addressGenerator: "Elm Street number 13",
                 averageDailyMeals: 30,
                 averageMonthlyMeals: 1000,
@@ -33,7 +33,7 @@ class BootStrap {
         def stockResidueGenerator2 = new ResidueGenerator(
                 nameGenerator: "Nuka Cola",
                 type: "Restaurante",
-                cnpj: "0000000",
+                cnpj: "000000000003",
                 addressGenerator: "Elm Street number 14",
                 averageDailyMeals: 20,
                 averageMonthlyMeals: 1000,
@@ -75,7 +75,7 @@ class BootStrap {
         def area2 = new ResidueGenerator(
                 nameGenerator:"CCEN/Area II",
                 type: "Cantina",
-                cnpj: "testecnpj2",
+                cnpj: "000000000003",
                 addressGenerator: "UFPE1",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -86,7 +86,7 @@ class BootStrap {
         def bomCafe = new ResidueGenerator(
                 nameGenerator:"Bom Cafe – CTG",
                 type: "Restaurante",
-                cnpj: "testecnpj3",
+                cnpj: "000000000004",
                 addressGenerator: "UFPE2",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -96,7 +96,7 @@ class BootStrap {
         def rotadoLanche = new ResidueGenerator(
                 nameGenerator:"Rota do Lanche",
                 type: "Restaurante",
-                cnpj: "testecnpj4",
+                cnpj: "000000000005",
                 addressGenerator: "UFPE3",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -106,7 +106,7 @@ class BootStrap {
         def cantinaCssa = new ResidueGenerator(
                 nameGenerator:"Cantina CCSA",
                 type: "Cantina",
-                cnpj: "testecnpj5",
+                cnpj: "000000000006",
                 addressGenerator: "UFPE4",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -116,7 +116,7 @@ class BootStrap {
         def quiosqueCssa = new ResidueGenerator(
                 nameGenerator:"Quiosque CCSA",
                 type: "Cantina",
-                cnpj: "testecnpj6",
+                cnpj: "000000000007",
                 addressGenerator: "UFPE5",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -126,7 +126,7 @@ class BootStrap {
         def planetRefeicoesCTG = new ResidueGenerator(
                 nameGenerator:"Planet Refeicoes – CTG",
                 type: "Restaurante",
-                cnpj: "testecnpj7",
+                cnpj: "000000000008",
                 addressGenerator: "UFPE6",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -136,7 +136,7 @@ class BootStrap {
         def planetRefeicoesCCS = new ResidueGenerator(
                 nameGenerator:"Planet Refeicoes – CCS",
                 type: "Restaurante",
-                cnpj: "testecnpj8",
+                cnpj: "000000000009",
                 addressGenerator: "UFPE7",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -146,7 +146,7 @@ class BootStrap {
         def planetRefeicoesCE = new ResidueGenerator(
                 nameGenerator:"Planet Refeicoes – CE",
                 type: "Restaurante",
-                cnpj: "testecnpj9",
+                cnpj: "000000000010",
                 addressGenerator: "UFPE8",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -156,7 +156,7 @@ class BootStrap {
         def chefPlataoCCSA = new ResidueGenerator(
                 nameGenerator:"Chef Platão – CCSA",
                 type: "Restaurante",
-                cnpj: "testecnpj10",
+                cnpj: "000000000011",
                 addressGenerator: "UFPE9",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -167,7 +167,7 @@ class BootStrap {
         def chefPlataoCFCH = new ResidueGenerator(
                 nameGenerator:"Chef Platao – CFCH",
                 type: "Restaurante",
-                cnpj: "testecnpj11",
+                cnpj: "000000000011",
                 addressGenerator: "UFPE10",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -176,7 +176,7 @@ class BootStrap {
         def aquarela = new ResidueGenerator(
                 nameGenerator:"Aquarela - CAC",
                 type: "Restaurante",
-                cnpj: "testecnpj12",
+                cnpj: "000000000012",
                 addressGenerator: "UFPE11",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -186,7 +186,7 @@ class BootStrap {
         def sinhaPimenta = new ResidueGenerator(
                 nameGenerator:"Sinha Pimenta – CCB",
                 type: "Restaurante",
-                cnpj: "testecnpj13",
+                cnpj: "000000000013",
                 addressGenerator: "UFPE12",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
