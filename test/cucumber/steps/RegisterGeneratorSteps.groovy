@@ -115,29 +115,25 @@ Then(~/^the new residue with address "(.*?)" is not stored$/) { String address -
 	assert ResidueGenerator.findByAddressGenerator(address) == null
 }
 
-def newGenerator
-def newGenerator2
-def nomeParametro
-def cnpjParametro
-
 Given(~/^o sistema possui um gerador de residuos com o cnpj "(.*?)"$/) { String cnpj ->
 
-	/*	ResidueGeneratorController controller = new ResidueGeneratorController()
-		controller.params << [nameGenerator: "RU", type: "Restaurante", cnpj: cnpj, addressGenerator: "Bubble Street number 7", averageDailyMeals: 0, averageMonthlyMeals: 0]
-		controller.request.setContent(new byte[1000])
-		controller.create()
-		controller.save()
-		controller.response.reset()
-*/
-		///newGenerator.save(flush: true)
+	/*
+		def newGenerator = new ResidueGenerator()
+		newGenerator.setNameGenerator("RU")
+		newGenerator.setType("Restaurante")
+		newGenerator.setCnpj(cnpj)
+		newGenerator.setAddressGenerator("Bubble Street number 7")
+		newGenerator.setAverageDailyMeals(0)
+		newGenerator.setAverageMonthlyMeals(0)
+		newGenerator.save(flush: true)		*/
 		
-		assert ResidueGenerator.findByCnpj(cnpj) != null
+	assert ResidueGenerator.findByCnpj(cnpj) != null
 		
 }
 
 When(~/^eu crio um novo gerador de residuos com o nome "(.*?)" e o cnpj "(.*?)"$/) { String nome, String cnpj ->
-	nomeParametro = nome
-	cnpjParametro = cnpj
+		
+	/*
 		newGenerator2 = new ResidueGenerator()
 		newGenerator2.setNameGenerator(nome)
 		newGenerator2.setType("Restaurante")
@@ -145,15 +141,15 @@ When(~/^eu crio um novo gerador de residuos com o nome "(.*?)" e o cnpj "(.*?)"$
 		newGenerator2.setAddressGenerator("Bubble Street number 7")
 		newGenerator2.setAverageDailyMeals(0)
 		newGenerator2.setAverageMonthlyMeals(0)
-		newGenerator2.save(flush: true)
+		newGenerator2.save(flush: true)		*/
+	
+	assert ResidueGenerator.findByNameGeneratorAndCnpj(nome, cnpj) != null
 		
-	assert ResidueGenerator.findByNameGeneratorAndCnpj(nome, cnpj)
-		
-
 }
 
-Then(~/^o sistema nao armazena o novo gerador de residuos$/) { ->
-	gerador = ResidueGenerator.findByNameGeneratorAndCnpj(nomeParametro, cnpjParametro)
+Then(~/^o sistema nao armazena o novo gerador de residuos com o nome "(.*?)" e o cnpj "(.*?)"$/) {String nome, String cnpj ->
+	gerador = ResidueGenerator.findByNameGeneratorAndCnpj(nome, cnpj)
 	assert gerador == null 
+	
 	
 }

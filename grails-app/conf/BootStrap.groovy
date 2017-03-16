@@ -40,6 +40,30 @@ class BootStrap {
                 hasActiveHarvest: false,
                 harvestSolicitation: null
         )
+		
+		def stockResidueGenerator3 = new ResidueGenerator(
+			nameGenerator: "Nuka Cola",
+			type: "Restaurante",
+			cnpj: "35401447000157",
+			addressGenerator: "Elm Street number 15",
+			averageDailyMeals: 20,
+			averageMonthlyMeals: 1000,
+			hasActiveHarvest: false,
+			harvestSolicitation: null
+		)
+		
+		def stockResidueGenerator4 = new ResidueGenerator(
+			nameGenerator: "Boa Vista",
+			type: "Restaurante",
+			cnpj: "35401447000157",
+			addressGenerator: "Elm Street number 16",
+			averageDailyMeals: 20,
+			averageMonthlyMeals: 1000,
+			hasActiveHarvest: false,
+			harvestSolicitation: null
+		)
+
+
 
 		def stockResidueGenerator3 = new ResidueGenerator(
 			nameGenerator: "Nuka Cola",

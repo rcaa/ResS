@@ -59,4 +59,4 @@ Feature: register a residue generator
   Scenario: new residue generator with duplicated cnpj
   	Given o sistema possui um gerador de residuos com o cnpj "35401447000157"
   	When eu crio um novo gerador de residuos com o nome "Boa Vista" e o cnpj "35401447000157"
-  	Then o sistema nao armazena o novo gerador de residuos
+  	Then o sistema nao armazena o novo gerador de residuos com o nome "Boa Vista" e o cnpj "35401447000157"
