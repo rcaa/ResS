@@ -13,7 +13,7 @@ class Coleta {
 
         nome blank: true // no caso de ser ecoponto pode não ter nome
         data blank: false, nullable: false
-        volume  blank: false, nullable: false
+        volume  blank: false, nullable: false, min:1
     }
     void setName(String novoNome){
         if(Coleta.findByNomeAndData(novoNome,this.data) == null){
