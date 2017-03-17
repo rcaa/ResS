@@ -11,4 +11,9 @@ class HarvestCompany {
         id nullable:false,unique:true,blank:false
         name nullable: false, blank: false
     }
+	
+	@Override
+	public String toString() {
+		return "ID: $id, Nome Da Companhia: $name"
+		}
 }
