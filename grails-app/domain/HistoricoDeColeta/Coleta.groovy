@@ -26,4 +26,9 @@ class Coleta {
             this.data = novaData
         }
     }
+	
+	@Override
+	public String toString(){
+		return "nome: $nome, data: $data, volume: $volume"
+	}
 }
