@@ -6,6 +6,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class UserController {
 
+<<<<<<< HEAD
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
 	def index(Integer max) {
@@ -48,6 +49,24 @@ class UserController {
 		}
 	}
 
+	@Transactional
+    def delete(User userInstance) {
+
+        if (userInstance == null) {
+            notFound()
+            return
+        }
+
+        userInstance.delete flush:true
+
+        request.withFormat {
+            form multipartForm {
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'User.label', default: 'User'), userInstance.id])
+                redirect action:"index", method:"GET"
+            }
+            '*'{ render status: NO_CONTENT }
+        }
+    }
 
 	protected void notFound() {
 		request.withFormat {

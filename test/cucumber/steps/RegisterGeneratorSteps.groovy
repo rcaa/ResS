@@ -147,9 +147,9 @@ When(~/^eu crio um novo gerador de residuos com o nome "(.*?)" e o cnpj "(.*?)"$
 		
 }
 
-Then(~/^o sistema nao armazena o novo gerador de residuos com o nome "(.*?)" e o cnpj "(.*?)"$/) {String nome, String cnpj ->
+Then(~/^o sistema armazena o novo gerador de residuos com o nome "(.*?)" e o cnpj "(.*?)"$/) {String nome, String cnpj ->
 	gerador = ResidueGenerator.findByNameGeneratorAndCnpj(nome, cnpj)
-	assert gerador == null 
+	assert gerador != null 
 	
 	
 }
