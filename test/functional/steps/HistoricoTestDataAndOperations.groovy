@@ -33,23 +33,23 @@ class HistoricoTestDataAndOperations {
 
 
     static public void CreateHistorico(String rest,@Format("dd/MM/yyyy") Date dia){
-        def cont = new ColetaController()
-
-        cont.params << [nome: rest, data: dia, volume: 101]
-        cont.create()
-        cont.save()
-        cont.response.reset()
+		CreateHistoricoGenerico(rest, dia, 101)
     }
 	
 	static public void CreateHistoricoWithoutVolume(String rest,@Format("dd/MM/yyyy") Date dia){
-		def cont = new ColetaController()
+		CreateHistoricoGenerico(rest, dia, null)
+	}
 
-		cont.params << [nome: rest, data: dia, volume: null]
+	static public void CreateHistoricoGenerico(String rest,@Format("dd/MM/yyyy") Date dia, def volume){
+		def cont = new ColetaController()
+		
+		cont.params << [nome: rest, data: dia, volume: volume]
 		cont.create()
-		cont.save()
+		cont.save( )
 		cont.response.reset()
 	}
 
+	
     static public void editColeta(int volume,Coleta coleta){
         def colet = coleta
         colet.setVolume(volume)
