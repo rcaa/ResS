@@ -40,4 +40,7 @@ class HarvestCompany {
 		return true;
 	}
 	
+	public String toString() {
+		return "ID: $id, Nome Da Companhia: $name"
+		}
 }
