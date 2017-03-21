@@ -96,12 +96,8 @@ class GeneratorTestDataAndOperations{
 	
 	static public void createGeneratorNomeCnpj(String nome, String CNPJ){
 		def cont = new ResidueGeneratorController()
-		def newGenerator = [nome: nome,
-							type: "Restaurante",
-							cnpj: CNPJ,
-							addressGenerator: "Bubble Street number 7",
-							averageMonthlyMeals: 0,
-							averageDailyMeals: 0]
+		def newGenerator = createGeneratorName(nome)
+		newGenerator << [cnpj: CNPJ]
 		cont.params << newGenerator
 		cont.create()
 		cont.save()
