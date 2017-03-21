@@ -96,20 +96,20 @@ class GeneratorTestDataAndOperations{
       
     }
 	
-	static public void createGeneratorNomeCnpj(String nome, String CNPJ){		
-		def newGenerator = [nome: nome,
-							type: "Restaurante",
-							cnpj: CNPJ,
-							addressGenerator: "Bubble Street number 7",
-							averageMonthlyMeals: 0,
-							averageDailyMeals: 0]
-		criarGerador(newGenerator)
+	static public void createGeneratorNomeCnpj(String nome, String CNPJ){
+		def cont = new ResidueGeneratorController()
+		def newGenerator = createGeneratorName(nome)
+		newGenerator << [cnpj: CNPJ]
+		cont.params << newGenerator
+		cont.create()
+		cont.save()
+		cont.response.reset()
 	}
 
     static public void showGenerator(String name){
         def cont = new ResidueGeneratorController()
         def newGenerator = findGeneratorByName(name)
-            cont.show(newGenerator)
+        cont.show(newGenerator)
     }
 
     static public void showGeneratorByCnpj(String cnpj){
