@@ -1,6 +1,5 @@
 package dashboard
 
-import user.User
 
 class DashboardController {
 
