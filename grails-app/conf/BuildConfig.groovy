@@ -79,5 +79,6 @@ grails.project.dependency.resolution = {
 			exclude "spock-core"
 		}
 		test ":geb:$gebVersion"
+		compile "org.grails.plugins:codenarc:0.26.0"
 	}
 }

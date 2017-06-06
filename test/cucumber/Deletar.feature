@@ -5,11 +5,11 @@ Feature: Deletar pontos de coleta
 @ignore
   Scenario: Delete interrompido
     Given Estou na pagina de editar do ponto "RU"
-    When Desisto de deletar um ponto recusando a mensagem de confirmação
+    When Desisto de deletar um ponto recusando a mensagem de confirmacao
     Then O ponto continua no sistema
 @ignore
   Scenario: Deletar ponto de coleta
     Given Estou na pagina de editar do ponto "RU"
-    When deleto o ponto aceitando a mensagem de confirmação
-    Then a deleção é confirmada
+    When deleto o ponto aceitando a mensagem de confirmacao
+    Then a delecao eh confirmada
 
