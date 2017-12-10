@@ -17,4 +17,8 @@ class HomePage extends Page {
     def selectGithubRibbon(){
         $('#forkongithublink').click();
     }
+	
+	def listColeta(){
+		$('#Coleta').click();
+	}
 }

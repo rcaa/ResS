@@ -2,6 +2,12 @@ Feature: Gerar historico de coleta
   As a membro da empresa de coleta
   I want to gerar um historico de coletas
   So that eu posso saber o desempenho da minha empresa
+  
+  Scenario: Acessar o historico de coletas
+    Given eu crio uma coleta com nome "RU", data "08/04/2015" e volume "101"
+    And estou na pagina Home
+    When eu listo as coletas existentes
+    Then eu visualizo a coleta com nome "RU", data "08/04/2015" e volume "101"
 
 @ignore
   Scenario: adicionar coleta ja existente

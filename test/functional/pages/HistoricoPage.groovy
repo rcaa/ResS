@@ -11,6 +11,14 @@ class HistoricoPage extends Page{
 
         title ==~ titulo
     }
+	
+	def preencherCampos(String nome, Date dia, int volume){
+		$("form").nome = nome
+		$("form").data_day = dia[Calendar.DATE]
+		$("form").data_month = dia[Calendar.MONTH]+1
+		$("form").data_year = dia[Calendar.YEAR]
+		$("form").volume = volume
+	}
 
     def fillColetaInfo(){
         $("form").nome = "RU"

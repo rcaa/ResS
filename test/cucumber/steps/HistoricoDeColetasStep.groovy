@@ -5,8 +5,28 @@ import pages.ColetaDeletePage
 import pages.ColetaEditPage
 import pages.ColetaListPage
 import pages.HistoricoPage
+import pages.HomePage
 import static cucumber.api.groovy.EN.*
 import HistoricoDeColeta.Coleta
+
+Given (~'^eu crio uma coleta com nome "([^"]*)", data "([^"]*)" e volume "([^"]*)"$'){String nome, String data, int volume ->
+	def dia = new Date().parse("dd/MM/yyyy", data)
+	to HistoricoPage
+	at HistoricoPage
+	page.preencherCampos(nome, dia, volume)
+	page.selectAdicionarColeta()
+}
+And(~'^estou na pagina Home$'){ ->
+	to HomePage
+	at HomePage
+}
+When (~'^eu listo as coletas existentes$'){ ->
+	page.listColeta()
+}
+Then (~'^eu visualizo a coleta com nome "([^"]*)", data "([^"]*)" e volume "([^"]*)"$'){String nome, @Format("dd/MM/yyyy") Date dia, int volume ->
+	at ColetaListPage
+	page.check(nome, dia, volume)
+}
 
 Given (~'^estou na pagina de adicionar coleta$'){ ->
     to HistoricoPage
