@@ -8,6 +8,12 @@ Feature: Gerar historico de coleta
     And estou na pagina Home
     When eu listo as coletas existentes
     Then eu visualizo a coleta com nome "RU", data "08/04/2015" e volume "101"
+    
+  Scenario: Criar coleta com nome vazio
+  	Given estou na pagina de adicionar coleta
+  	When eu preencho o campo data com "05/06/2017" e o campo volume com "22"
+  	And clico em adicionar coleta do dia
+  	Then eu visualizo uma mensagem de erro pedindo que eu preencha o nome da coleta
 
 @ignore
   Scenario: adicionar coleta ja existente

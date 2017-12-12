@@ -28,6 +28,15 @@ Then (~'^eu visualizo a coleta com nome "([^"]*)", data "([^"]*)" e volume "([^"
 	page.check(nome, dia, volume)
 }
 
+When (~'^eu preencho o campo data com "([^"]*)" e o campo volume com "([^"]*)"$'){String data, int volume ->
+	def dia = new Date().parse("dd/MM/yyyy", data)
+	page.preencherCampos("", dia, volume)
+}
+Then (~'^eu visualizo uma mensagem de erro pedindo que eu preencha o nome da coleta$'){ ->
+	at HistoricoPage
+	page.existeMensagemFaltandoNome()
+}
+
 Given (~'^estou na pagina de adicionar coleta$'){ ->
     to HistoricoPage
     at HistoricoPage
