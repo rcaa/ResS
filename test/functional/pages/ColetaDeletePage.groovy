@@ -2,6 +2,7 @@ package pages
 import geb.Page
 
 class ColetaDeletePage extends Page{
+	
 
     def titulo = "Show Coleta"
     static url = "/ResS/coleta/show/1"
@@ -10,6 +11,7 @@ class ColetaDeletePage extends Page{
     static at = {
         title ==~ titulo
     }
+	
 
 
 

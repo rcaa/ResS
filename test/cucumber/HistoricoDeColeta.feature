@@ -16,12 +16,11 @@ Feature: Gerar historico de coleta
     When tento editar a data "07/11/2015" para "08/05/2015"
     Then a edicao nao sera realizada
 
-@ignore
-  Scenario: Adicionar coleta do dia no sistema
-    Given estou na pagina de adicionar coleta
-    When preencho os campos necessarios com informacoes validas
-    And clico em adicionar coleta do dia
-    Then eh adicionada com sucesso
+#controlador
+  Scenario: Adicionar coleta
+    Given O sistema nao possuir um ponto de coleta com nome "ELY"
+    When Eu crio um ponto de coleta com nome "ELY", data "20/09/2017" e volume "2001"	
+    Then O ponto de coleta com nome "ELY" e adicionado pelo sistema
 
   @ignore
   Scenario: Adicionar a pagina de historico de coletas como um cliente
@@ -83,3 +82,7 @@ Feature: Gerar historico de coleta
     And seleciono esta coleta
     When aperto o botao Delete
     Then estou na pagina de listagem e esta coleta nao consta mais
+    
+    
+
+ 

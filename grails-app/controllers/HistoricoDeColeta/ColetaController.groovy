@@ -14,15 +14,75 @@ class ColetaController {
         params.max = Math.min(max ?: 10, 100)
         [coletaInstanceList: Coleta.list(params), coletaInstanceTotal: Coleta.count()]
     }
+	def createAndSave(){
+		Coleta coletaInstance = new Coleta(params)
+		respond coletaInstance.errors, view: 'create'
+				
+		
+		if (!coletaInstance.save(flush: true)) {
+			render(view: "create", model: [coletaInstance: coletaInstance])
+			return
+		}
+
+		flash.message = message(code: 'default.created.message', args: [message(code: 'coleta.label', default: 'Coleta'), coletaInstance.id])
+		redirect(action: "show", id: coletaInstance.id)
+		
+	
+
+		
+	}
+	
+	def create2() {
+		[coletaInstance: new Coleta(params)]
+	}
+	
+	def save2() {
+		Coleta coletaInstance = new Coleta(params)
+		if(Coleta.findByNomeAndData(coletaInstance.nome,coletaInstance.data) == null){
+				respond coletaInstance.errors, view: 'create'
+				return
+			
+
+		if (!coletaInstance.save(flush: true)) {
+			render(view: "create", model: [coletaInstance: coletaInstance])
+			return
+		}
+
+		flash.message = message(code: 'default.created.message', args: [message(code: 'coleta.label', default: 'Coleta'), coletaInstance.id])
+		redirect(action: "show", id: coletaInstance.id)
+		}
+	}
+	def delete2(Long id) {
+		def coletaInstance = Coleta.get(id)
+		if (!coletaInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'coleta.label', default: 'Coleta'), id])
+			redirect(action: "list")
+			return
+		}
+
+		try {
+			coletaInstance.delete(flush: true)
+			flash.message = message(code: 'default.deleted.message', args: [message(code: 'coleta.label', default: 'Coleta'), id])
+			redirect(action: "list")
+		}
+		catch (DataIntegrityViolationException e) {
+			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'coleta.label', default: 'Coleta'), id])
+			redirect(action: "show", id: id)
+		}
+	}
+
+
 
     def create() {
         [coletaInstance: new Coleta(params)]
     }
 
     def save() {
-        Coleta a = new Coleta(params)
-        if(Coleta.findByNomeAndData(a.nome,a.data) == null){
-        def coletaInstance = new Coleta(params)
+        Coleta coletaInstance = new Coleta(params)
+        if(Coleta.findByNomeAndData(coletaInstance.nome,coletaInstance.data) == null){
+				respond coletaInstance.errors, view: 'create'
+				return
+        	
 
         if (!coletaInstance.save(flush: true)) {
             render(view: "create", model: [coletaInstance: coletaInstance])
@@ -103,4 +163,5 @@ class ColetaController {
             redirect(action: "show", id: id)
         }
     }
+	
 }

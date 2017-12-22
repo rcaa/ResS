@@ -8,6 +8,7 @@ import pages.HistoricoPage
 import static cucumber.api.groovy.EN.*
 import HistoricoDeColeta.Coleta
 
+
 Given (~'^estou na pagina de adicionar coleta$'){ ->
     to HistoricoPage
     at HistoricoPage
@@ -142,4 +143,25 @@ When(~'^aperto o botao Delete$') { ->
 }
 Then(~'^estou na pagina de listagem e esta coleta nao consta mais$') { ->
     at ColetaListPage
+}
+
+
+
+Given(~/^O sistema nao possuir um ponto de coleta com nome "(.*?)"$/) { String nome ->
+	// Write code here that turns the phrase above into concrete actions
+	coleta = Coleta.findByNome(nome)
+	assert coleta == null
+	
+}
+
+When(~/^Eu crio um ponto de coleta com nome "(.*?)", data "(.*?)" e volume "(.*?)"$/) { String nome, String data, String volume ->
+	// Write code here that turns the phrase above into concrete actions
+	
+	ColetaTestDataAndOperations.createColeta(nome, data, volume)
+}
+
+Then(~/^O ponto de coleta com nome "(.*?)" e adicionado pelo sistema$/) { String nome ->
+	// Write code here that turns the phrase above into concrete actions
+	coleta = Coleta.findByNome(nome)
+	assert coleta != null
 }
