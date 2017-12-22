@@ -23,45 +23,55 @@ class HistoricoTestDataAndOperations {
             coleta.data == date
         }
     }
+	
+	static public def findColetaByNome(String rest) {
+		coletas.find { coleta ->
+			coleta.nome == rest
+		}
+	}
 
 
 
     static public void CreateHistorico(String rest,@Format("dd/MM/yyyy") Date dia){
-        def cont = new ColetaController()
-
-        cont.params << [nome: rest, data: dia, volume: 101]
-        cont.create()
-        cont.save()
-        cont.response.reset()
+		CreateHistoricoGenerico(rest, dia, 101)
     }
+	
+	static public void CreateHistoricoWithoutVolume(String rest,@Format("dd/MM/yyyy") Date dia){
+		CreateHistoricoGenerico(rest, dia, null)
+	}
 
-    static public void editColeta(int volume,Coleta coleta){
+	static public void CreateHistoricoGenerico(String rest,@Format("dd/MM/yyyy") Date dia, def volume){
+		def cont = new ColetaController()
+		
+		cont.params << [nome: rest, data: dia, volume: volume]
+		cont.create()
+		cont.save( )
+		cont.response.reset()
+	}
+
+    static public void editVolumeColeta(int volume,Coleta coleta){
         def colet = coleta
         colet.setVolume(volume)
-        def cont =  new ColetaController()
-        cont.params << colet.properties
-        cont.update()
+        editColeta(colet)
     }
 
     static public void editNomeColeta(String novoNome,Coleta coleta){
         def colet = coleta
         colet.setName(novoNome)
-        def cont =  new ColetaController()
-        cont.params << colet.properties
-        cont.update()
-
-
+        editColeta(colet)
     }
 
     static public void editDataColeta(@Format("dd/MM/yyyy") Date novaData,Coleta coleta){
         def colet = coleta
         colet.setDate(novaData)
-        def cont =  new ColetaController()
-        cont.params << colet.properties
-        cont.update()
-
-
-    }
+        editColeta(colet)
+    } 
+	
+	static public void editColeta(def colet){
+		def cont =  new ColetaController()
+		cont.params << colet.properties
+		cont.update()
+	}
 
     static public void deleteColeta(Coleta coleta){
         def cont = new ColetaController()

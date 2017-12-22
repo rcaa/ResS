@@ -9,7 +9,7 @@ class GeneratorTestDataAndOperations{
 
             [nameGenerator:"RU",
              type: "Restaurante",
-             cnpj: "testecnpj1",
+             cnpj: "35401447000157",
              addressGenerator: "Bubble Street number 7",
              averageMonthlyMeals: 0,
              averageDailyMeals: 0],
@@ -48,48 +48,68 @@ class GeneratorTestDataAndOperations{
         generators.find {generator ->
             generator.cnpj== CNPJ
         }
+    } 
+	
+	static public void findGeneratorByNomeCnpj(String nome, String CNPJ){
+        generators.find {generator ->
+            generator.cnpj == CNPJ
+			generator.nome == nome
+        }
     }
-    static public void createGenerator(String address){
-        def cont = new ResidueGeneratorController()
+	
+    static public void createGenerator(String address){        
         def novoGenerator = findGeneratorByAddress(address)
-        cont.params << novoGenerator as ResidueGenerator
-        cont.create()
-        cont.save()
-        cont.response.reset()
+		criarGerador(novoGenerator)
     }
 
     static public void createGeneratorName(String name){
-        def cont = new ResidueGeneratorController()
         def newGenerator = [nome: name,
                             type: "Restaurante",
                             cnpj: "testecnpj1",
                             addressGenerator: "Bubble Street number 7",
                             averageMonthlyMeals: 0,
                             averageDailyMeals: 0]
-        cont.params << newGenerator
-        cont.create()
-        cont.save()
-        cont.response.reset()
+		criarGerador(newGenerator)
     }
+	
+	static public void createGenerator(String name, int average){
+		
+		def newGenerator = [nome: name,
+							type: "Restaurante",
+							cnpj: "testecnpj1",
+							addressGenerator: "Bubble Street number 7",
+							averageMonthlyMeals: average,
+							averageDailyMeals: 0]
+		criarGerador(newGenerator)
+		
+	}
+	
 
     static public void createGeneratorCnpj(String CNPJ){
-        def cont = new ResidueGeneratorController()
         def newGenerator = [nome: "RU",
                             type: "Restaurante",
                             cnpj: CNPJ,
                             addressGenerator: "Bubble Street number 7",
                             averageMonthlyMeals: 0,
                             averageDailyMeals: 0]
-        cont.params << newGenerator
-        cont.create()
-        cont.save()
-        cont.response.reset()
+		criarGerador(newGenerator)
+      
     }
+	
+	static public void createGeneratorNomeCnpj(String nome, String CNPJ){
+		def cont = new ResidueGeneratorController()
+		def newGenerator = createGeneratorName(nome)
+		newGenerator << [cnpj: CNPJ]
+		cont.params << newGenerator
+		cont.create()
+		cont.save()
+		cont.response.reset()
+	}
 
     static public void showGenerator(String name){
         def cont = new ResidueGeneratorController()
         def newGenerator = findGeneratorByName(name)
-            cont.show(newGenerator)
+        cont.show(newGenerator)
     }
 
     static public void showGeneratorByCnpj(String cnpj){
@@ -98,6 +118,14 @@ class GeneratorTestDataAndOperations{
         cont.show(newGenerator)
     }
 
+	static private void criarGerador(def generator){
+		def cont = new ResidueGeneratorController()
+		cont.params << generator
+		cont.create()
+		cont.save()
+		cont.response.reset()
+	}
+	
     static public void editGenerator(String address, def residueGenerator){
         def existingGenerator = findGeneratorByAddress(address)
         if(address != null && existingGenerator == null) {
@@ -119,14 +147,9 @@ class GeneratorTestDataAndOperations{
         return novoGenerator;
     }
 
-    static public void createAltGenerator(String address){
-        def cont = new ResidueGeneratorController()
+    static public void createAltGenerator(String address){   
         def novoGenerator = getAltGenerator(address)
-        cont.params << novoGenerator
-        cont.create()
-        cont.save()
-        cont.response.reset()
-
+		criarGerador(novoGenerator)
     }
 
     static public void createIncompleteGenerator(String address){

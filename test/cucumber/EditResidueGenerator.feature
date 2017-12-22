@@ -43,4 +43,11 @@ Feature: Edit the residue generator registration data
     Then I should see a message indicating that an error occurred
 
    #see if there is another scenarios to implement
+   
+  Scenario: Residue generator registration data edit fail
+    Given I am at the residue generator edit page
+    When I fill the name field with ""
+    And fill all the required fields correctly
+    And submit my changes
+    Then I should see a message indicating that an error occurred
 

@@ -24,7 +24,7 @@ class ResidueGenerator {
         averageMonthlyMeals  nullable: false, min: 0,blank:false
         hasActiveHarvest nullable:false
         harvestSolicitation nullable:true
-        cnpj blank:false, nullable:false
+        cnpj (maxSize: 18, blank:false, nullable:false, matches:"[0-9]+")
     }
 
     String toString(){

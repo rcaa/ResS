@@ -21,6 +21,20 @@ And (~'^clico em adicionar coleta do dia$'){ ->
 Then (~'^eh adicionada com sucesso$'){ ->
 }
 
+Given(~/^nao existe uma coleta com nome "(.*?)$/) { String name ->
+    assert Coleta.findByNome(name) == null
+}
+
+When(~/^eu crio uma nova coleta com nome "(.*?)" e data "(.*?)"$/) {String nome, @Format("dd/MM/yyyy") Date dia ->
+	coleta = new Coleta()
+    coleta.name = nome
+    coleta.data = dia
+}
+
+Then(~/^a coleta com nome "(.*?)" nao sera criada$/) { String name ->
+	assert Coleta.findByNome(name) == null
+}
+
 
 Given(~'^nao foi criada um relatorio de coleta do dia "([^"]*)" do restaurante "([^"]*)"$'){@Format("dd/MM/yyyy") Date dia, String restaurante ->
     coleta = Coleta.findByDataAndNome(dia,restaurante)
@@ -35,6 +49,13 @@ Then (~'o relatorio eh adicionado ao historico de coletas$'){ ->
     assert Coleta.findByDataAndNome(data,restaurante) != null
 }
 
+When (~'^preencho o campo volume com valor "([^"]*)"$'){String volume -> 
+	page.fillColetaInfo(volume)
+}
+
+Then(~/^eu vejo uma menssagem de erro$/) { ->
+	page.hasInvalidMessage()
+}
 
 Given (~'^ja foi criado o relatorio de coleta do dia "([^"]*)" do restaurante "([^"]*)"$'){@Format("dd/MM/yyyy") Date dia, String restaurante ->
    dat = dia
@@ -142,4 +163,38 @@ When(~'^aperto o botao Delete$') { ->
 }
 Then(~'^estou na pagina de listagem e esta coleta nao consta mais$') { ->
     at ColetaListPage
+}
+
+Given(~/^o sistema nao possui uma coleta com data "(.*?)" e nome "(.*?)"$/) {@Format("dd/MM/yyyy") Date data, String rest ->
+	coleta = Coleta.findByDataAndNome(data,rest)
+	assert coleta == null
+}
+
+When(~/^crio uma coleta com data "(.*?)", nome "(.*?)", e campo de volume null$/) {@Format("dd/MM/yyyy") Date dia, String rest ->
+	data = dia
+	restaurante = rest
+	HistoricoTestDataAndOperations.CreateHistoricoWithoutVolume(rest,data)
+}
+
+Then(~/^a nova coleta nao e armazenada pelo sistema$/) { ->
+	coleta = Coleta.findByDataAndNome(data,restaurante)
+    assert coleta == null
+}
+
+Given(~/^eu estou na pagina de adicionar coleta$/) { ->
+	to HistoricoPage
+	at HistoricoPage
+}
+
+def nomeParametro
+
+When(~/^eu adiciono uma nova coleta com o nome "(.*?)"$/) { String nome ->
+	nomeParametro = nome
+	page.fillColetaBlankName(nome)
+	page.selectAdicionarColeta();
+}
+
+Then(~/^a coleta nao e adicionada$/) { ->
+	assert Coleta.findByNome(nomeParametro) == null
+	
 }
