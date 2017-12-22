@@ -34,15 +34,8 @@ class HistoricoPage extends Page{
     }
 	
 	def existeMensagemFaltandoNome(){
-		def contentCreateColeta = $("div", id:"create-coleta")
-		
-		def listasErros = contentCreateColeta.find('ul')
-		assert listasErros.size() != 0
-		
-		def erros = listasErros[0].find('li')
-		assert erros.size() != 0
-		 
-		assert erros[0].getAttribute("innerHTML").substring(0, 59) == "O campo [nome] da classe [class HistoricoDeColeta.Coleta] n"
+		def html = $('html').getAttribute("innerHTML")
+		assert html.contains("O campo [nome] da classe [class HistoricoDeColeta.Coleta] n")
 	}
 
 }

@@ -25,7 +25,7 @@ When (~'^eu listo as coletas existentes$'){ ->
 }
 Then (~'^eu visualizo a coleta com nome "([^"]*)", data "([^"]*)" e volume "([^"]*)"$'){String nome, @Format("dd/MM/yyyy") Date dia, int volume ->
 	at ColetaListPage
-	page.check(nome, dia, volume)
+	page.encontrarNaPaginaNomeDataVolume(nome, dia, volume)
 }
 
 When (~'^eu preencho o campo data com "([^"]*)" e o campo volume com "([^"]*)"$'){String data, int volume ->
