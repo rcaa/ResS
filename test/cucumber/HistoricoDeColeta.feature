@@ -3,6 +3,11 @@ Feature: Gerar historico de coleta
   I want to gerar um historico de coletas
   So that eu posso saber o desempenho da minha empresa
   
+  Scenario: Criar coleta com nome vazio (controller)
+  	Given nao foi criado um relatorio de coleta do dia "05/06/2017" do restaurante ""
+  	When crio um novo relatorio no dia "05/06/2017" do restaurante "" com volume "22"
+  	Then nao foi criado um relatorio de coleta do dia "05/06/2017" do restaurante ""
+  
   Scenario: Acessar o historico de coletas
     Given eu crio uma coleta com nome "RU", data "08/04/2015" e volume "101"
     And estou na pagina Home
