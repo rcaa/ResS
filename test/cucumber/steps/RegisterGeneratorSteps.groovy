@@ -8,8 +8,8 @@ import static cucumber.api.groovy.EN.*
  * Created by Arthur on 01/05/2015.
  */
 
-Given(~'^The system has no generator with the address "([^"]*)"$') { String address ->
-    generator = ResidueGenerator.findByAddressGenerator(address)
+Given(~'^The system has no generator with the cnpj "([^"]*)"$') { String cnpj ->
+    generator = ResidueGenerator.findByCnpj(cnpj)
     assert generator == null
 }
 
@@ -19,11 +19,8 @@ When(~'I register a different generator of residue with the address "([^"]*)"$')
 
 }
 
-When (~'^I register a new generator of residue with the address "([^"]*)"$'){String address ->
-    endereco = address
-    GeneratorTestDataAndOperations.createGenerator(address)
-    generator = ResidueGenerator.findByAddressGenerator(address)
-    assert generator != null
+When (~'^I register a new generator of residue with the address "([^"]*)" and cnpj "([^"]*)"$'){String address, String cnpj ->
+	GeneratorTestDataAndOperations.criarGerador("Lucinha Refeicoes", "Restaurante", address, 20, 500, cnpj)
 }
 
 Given (~'^The system has a generator with the address "([^"]*)" already stored$$'){String address ->
@@ -79,12 +76,12 @@ When (~'I register a new generator of residue with some info left incomplete$'){
 }
 
 And(~'The address "([^"]*)"$'){ String address ->
-    endereco = address
+	endereco = address
     GeneratorTestDataAndOperations.createIncompleteGenerator(address)
 }
 
-Then(~'The new residue generator is not stored by the system$'){->
-    assert ResidueGenerator.findByAddressGenerator(endereco) == null
+Then(~'^The new residue generator with cnpj "([^"]*)" is not stored by the system$'){ String cnpj ->
+    assert ResidueGenerator.findByCnpj(cnpj) == null
 }
 
 When(~'I fill the generator details with some fields left incomplete$'){->
