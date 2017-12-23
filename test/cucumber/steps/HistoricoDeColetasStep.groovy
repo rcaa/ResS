@@ -5,8 +5,38 @@ import pages.ColetaDeletePage
 import pages.ColetaEditPage
 import pages.ColetaListPage
 import pages.HistoricoPage
+import pages.HomePage
 import static cucumber.api.groovy.EN.*
 import HistoricoDeColeta.Coleta
+
+
+Given (~'^eu crio uma coleta com nome "([^"]*)", data "([^"]*)" e volume "([^"]*)"$'){String nome, String data, int volume ->
+	def dia = new Date().parse("dd/MM/yyyy", data)
+	to HistoricoPage
+	at HistoricoPage
+	page.preencherCampos(nome, dia, volume)
+	page.selectAdicionarColeta()
+}
+And(~'^estou na pagina Home$'){ ->
+	to HomePage
+	at HomePage
+}
+When (~'^eu listo as coletas existentes$'){ ->
+	page.listColeta()
+}
+Then (~'^eu visualizo a coleta com nome "([^"]*)", data "([^"]*)" e volume "([^"]*)"$'){String nome, @Format("dd/MM/yyyy") Date dia, int volume ->
+	at ColetaListPage
+	page.encontrarNaPaginaNomeDataVolume(nome, dia, volume)
+}
+
+When (~'^eu preencho o campo data com "([^"]*)" e o campo volume com "([^"]*)"$'){String data, int volume ->
+	def dia = new Date().parse("dd/MM/yyyy", data)
+	page.preencherCampos("", dia, volume)
+}
+Then (~'^eu visualizo uma mensagem de erro pedindo que eu preencha o nome da coleta$'){ ->
+	at HistoricoPage
+	page.existeMensagemFaltandoNome()
+}
 
 Given (~'^estou na pagina de adicionar coleta$'){ ->
     to HistoricoPage
@@ -22,14 +52,15 @@ Then (~'^eh adicionada com sucesso$'){ ->
 }
 
 
-Given(~'^nao foi criada um relatorio de coleta do dia "([^"]*)" do restaurante "([^"]*)"$'){@Format("dd/MM/yyyy") Date dia, String restaurante ->
-    coleta = Coleta.findByDataAndNome(dia,restaurante)
+Given(~'^nao foi criado um relatorio de coleta do dia "([^"]*)" do restaurante "([^"]*)"$'){ String data, String restaurante ->
+	def dia = new Date().parse("dd/MM/yyyy", data)
+    def coleta = Coleta.findByDataAndNome(dia,restaurante)
+	
     assert coleta == null
 }
-When (~'^crio um novo relatorio o dia "([^"]*)" do restaurante "([^"]*)"$'){@Format("dd/MM/yyyy") Date dia, String rest ->
-    data = dia
-    restaurante = rest
-    HistoricoTestDataAndOperations.CreateHistorico(rest,dia)
+When (~'^crio um novo relatorio no dia "([^"]*)" do restaurante "([^"]*)" com volume "([^"]*)"$'){String data, String rest, int volume ->
+    def dia = new Date().parse("dd/MM/yyyy", data)
+	HistoricoTestDataAndOperations.criarColeta(rest, dia, volume)
 }
 Then (~'o relatorio eh adicionado ao historico de coletas$'){ ->
     assert Coleta.findByDataAndNome(data,restaurante) != null
