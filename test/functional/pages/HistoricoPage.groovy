@@ -35,7 +35,8 @@ class HistoricoPage extends Page{
 	
 	def existeMensagemFaltandoNome(){
 		def html = $('html').getAttribute("innerHTML")
-		assert html.contains("O campo [nome] da classe [class HistoricoDeColeta.Coleta] n")
+		assert html.contains("O campo [nome] da classe [class HistoricoDeColeta.Coleta] n") ||
+		       html.contains("Property [nome] of class [class HistoricoDeColeta.Coleta] cannot be null")
 	}
 
 }

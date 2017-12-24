@@ -24,7 +24,8 @@ And(~'^estou na pagina Home$'){ ->
 When (~'^eu listo as coletas existentes$'){ ->
 	page.listColeta()
 }
-Then (~'^eu visualizo a coleta com nome "([^"]*)", data "([^"]*)" e volume "([^"]*)"$'){String nome, @Format("dd/MM/yyyy") Date dia, int volume ->
+Then (~'^eu visualizo a coleta com nome "([^"]*)", data "([^"]*)" e volume "([^"]*)"$'){String nome, String data, int volume ->
+	def dia = new Date().parse("dd/MM/yyyy", data)
 	at ColetaListPage
 	page.encontrarNaPaginaNomeDataVolume(nome, dia, volume)
 }
@@ -52,7 +53,7 @@ Then (~'^eh adicionada com sucesso$'){ ->
 }
 
 
-Given(~'^nao foi criado um relatorio de coleta do dia "([^"]*)" do restaurante "([^"]*)"$'){ String data, String restaurante ->
+Given(~'^o sistema nao tem um relatorio de coleta do dia "([^"]*)" do restaurante "([^"]*)"$'){ String data, String restaurante ->
 	def dia = new Date().parse("dd/MM/yyyy", data)
     def coleta = Coleta.findByDataAndNome(dia,restaurante)
 	
