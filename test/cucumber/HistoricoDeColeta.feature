@@ -2,6 +2,23 @@ Feature: Gerar historico de coleta
   As a membro da empresa de coleta
   I want to gerar um historico de coletas
   So that eu posso saber o desempenho da minha empresa
+  
+  Scenario: Criar coleta com nome vazio (controller)
+  	Given o sistema nao tem um relatorio de coleta do dia "05/06/2017" do restaurante ""
+  	When crio um novo relatorio no dia "05/06/2017" do restaurante "" com volume "22"
+  	Then o sistema nao tem um relatorio de coleta do dia "05/06/2017" do restaurante ""
+  
+  Scenario: Acessar o historico de coletas
+    Given eu crio uma coleta com nome "RU", data "08/04/2015" e volume "101"
+    And estou na pagina Home
+    When eu listo as coletas existentes
+    Then eu visualizo a coleta com nome "RU", data "08/04/2015" e volume "101"
+    
+  Scenario: Criar coleta com nome vazio
+  	Given estou na pagina de adicionar coleta
+  	When eu preencho o campo data com "05/06/2017" e o campo volume com "22"
+  	And clico em adicionar coleta do dia
+  	Then eu visualizo uma mensagem de erro pedindo que eu preencha o nome da coleta
 
 @ignore
   Scenario: adicionar coleta ja existente

@@ -34,6 +34,10 @@ class ResidueGeneratorController {
         flash.message = message(code: 'default.created.message', args: [message(code: 'residueGenerator.label', default: 'ResidueGenerator'), residueGeneratorInstance.id])
         redirect(action: "show", id: residueGeneratorInstance.id)
     }
+	
+	def saveGenerator() {
+		save()
+	}
 
     def show(Long id) {
         def residueGeneratorInstance = ResidueGenerator.get(id)
@@ -103,5 +107,9 @@ class ResidueGeneratorController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'residueGenerator.label', default: 'ResidueGenerator'), id])
             redirect(action: "show", id: id)
         }
+    }
+
+    def deleteGenerator(Long id) {
+		delete(id)
     }
 }
