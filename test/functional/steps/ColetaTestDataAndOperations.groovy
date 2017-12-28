@@ -8,20 +8,15 @@ import HistoricoDeColeta.ColetaController
 class ColetaTestDataAndOperations {
 	
 	static  coletas = [
-		
-					 nome:"RU",
-					 data: ("08/04/2015"),
-					 volume: 101,
-		
+				nome:"RU",
+				data: ("08/04/2015"),
+				volume: 101,
 			]
-	
 	static public def findColetaByNome(String nome ) {
 		coletas.find { coleta ->
 			coleta.nome == nome
-			
 		}
 	}
-	
 	static public def findColetaByNomeData(String rest,String date1 ) {
 		def data1 = new Date().parse("dd/MM/yyyy", date1)
 		coletas.find { coleta ->
@@ -29,8 +24,6 @@ class ColetaTestDataAndOperations {
 			coleta.data == data1
 		}
 	}
-
-	
 	static public void createColeta(String rest,String dia, String volume){
 		def cont = new ColetaController()
 		def data = new Date().parse("dd/MM/yyyy", dia)
@@ -40,7 +33,6 @@ class ColetaTestDataAndOperations {
 		cont.save()
 		cont.response.reset()
 	}
-	
 	static public void deleteColeta(Coleta coleta){
         def cont = new ColetaController()
         cont.params << [id: coleta.id]
@@ -48,5 +40,4 @@ class ColetaTestDataAndOperations {
         cont.delete()
         cont.response.reset()
     }
-
 }

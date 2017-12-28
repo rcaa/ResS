@@ -4,7 +4,7 @@ import geb.Page
 class ColetaEditPage extends Page{
 
     def titulo = "Coleta List"
-    static url = "http://localhost:8070/ResS/coleta/edit/1"
+    static url = "ResS/coleta/edit/1"
 
     static at = {
         title ==~ titulo

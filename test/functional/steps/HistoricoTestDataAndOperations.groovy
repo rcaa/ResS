@@ -28,7 +28,6 @@ class HistoricoTestDataAndOperations {
 
     static public void CreateHistorico(String rest,@Format("dd/MM/yyyy") Date dia){
         def cont = new ColetaController()	
-
         cont.params << [nome: rest, data: dia, volume: 101]
         cont.create()
         cont.save()

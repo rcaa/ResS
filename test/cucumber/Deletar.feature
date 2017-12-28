@@ -5,15 +5,13 @@ Feature: Deletar pontos de coleta
 #GUI
   Scenario: Deletar ponto de coleta interrompido
     Given Estou na pagina de visualizacao do ponto de coleta com nome "RU"
-    And Eu seleciono a opcao para remocao do ponto de coleta com nome "RU"|
-    When recuso a mensagem de confirmacao
-    Then O ponto nao e excluido
+    And Eu seleciono a opcao para remocao do ponto de coleta com nome "RU" e recuso a mensagem de confirmacao
+    Then Eu visualizo ponto na pagina de listagem
 
   Scenario: Deletar ponto de coleta
     Given Estou na pagina de visualizacao do ponto de coleta com nome "RU" e data "20/09/1996"
-    When Eu seleciono a opcao para remocao do ponto de coleta com nome "RU" e data "20/09/1996"
-    And aceito a mensagem de confirmacao
-    Then O ponto nao esta mais no sistema
+    When Eu seleciono a opcao para remocao do ponto de coleta com nome "RU" e data "20/09/1996" e aceito a mensagem de confirmacao
+    Then Eu nao visualizo mais o ponto na pagina de listagem
 #CONTROLADOR
 
   Scenario: Deletar pontos de coleta

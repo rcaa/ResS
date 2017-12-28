@@ -17,62 +17,13 @@ class ColetaController {
 	def createAndSave(){
 		Coleta coletaInstance = new Coleta(params)
 		respond coletaInstance.errors, view: 'create'
-				
-		
 		if (!coletaInstance.save(flush: true)) {
 			render(view: "create", model: [coletaInstance: coletaInstance])
 			return
 		}
-
 		flash.message = message(code: 'default.created.message', args: [message(code: 'coleta.label', default: 'Coleta'), coletaInstance.id])
-		redirect(action: "show", id: coletaInstance.id)
-		
-	
-
-		
-	}
-	
-	def create2() {
-		[coletaInstance: new Coleta(params)]
-	}
-	
-	def save2() {
-		Coleta coletaInstance = new Coleta(params)
-		if(Coleta.findByNomeAndData(coletaInstance.nome,coletaInstance.data) == null){
-				respond coletaInstance.errors, view: 'create'
-				return
-			
-
-		if (!coletaInstance.save(flush: true)) {
-			render(view: "create", model: [coletaInstance: coletaInstance])
-			return
-		}
-
-		flash.message = message(code: 'default.created.message', args: [message(code: 'coleta.label', default: 'Coleta'), coletaInstance.id])
-		redirect(action: "show", id: coletaInstance.id)
-		}
-	}
-	def delete2(Long id) {
-		def coletaInstance = Coleta.get(id)
-		if (!coletaInstance) {
-			flash.message = message(code: 'default.not.found.message', args: [message(code: 'coleta.label', default: 'Coleta'), id])
-			redirect(action: "list")
-			return
-		}
-
-		try {
-			coletaInstance.delete(flush: true)
-			flash.message = message(code: 'default.deleted.message', args: [message(code: 'coleta.label', default: 'Coleta'), id])
-			redirect(action: "list")
-		}
-		catch (DataIntegrityViolationException e) {
-			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'coleta.label', default: 'Coleta'), id])
-			redirect(action: "show", id: id)
-		}
-	}
-
-
-
+		redirect(action: "show", id: coletaInstance.id)		
+	}	
     def create() {
         [coletaInstance: new Coleta(params)]
     }
@@ -123,7 +74,6 @@ class ColetaController {
             redirect(action: "list")
             return
         }
-
         if (version != null) {
             if (coletaInstance.version > version) {
                 coletaInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
@@ -133,14 +83,11 @@ class ColetaController {
                 return
             }
         }
-
         coletaInstance.properties = params
-
         if (!coletaInstance.save(flush: true)) {
             render(view: "edit", model: [coletaInstance: coletaInstance])
             return
         }
-
         flash.message = message(code: 'default.updated.message', args: [message(code: 'coleta.label', default: 'Coleta'), coletaInstance.id])
         redirect(action: "show", id: coletaInstance.id)
     }
@@ -152,7 +99,6 @@ class ColetaController {
             redirect(action: "list")
             return
         }
-
         try {
             coletaInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'coleta.label', default: 'Coleta'), id])
@@ -163,5 +109,4 @@ class ColetaController {
             redirect(action: "show", id: id)
         }
     }
-	
 }

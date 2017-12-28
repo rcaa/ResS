@@ -18,7 +18,7 @@ Feature: Gerar historico de coleta
 
 #controlador
   Scenario: Adicionar coleta
-    Given O sistema nao possuir um ponto de coleta com nome "ELY"
+    Given O sistema nao possui um ponto de coleta com nome "ELY"
     When Eu crio um ponto de coleta com nome "ELY", data "20/09/2017" e volume "2001"	
     Then O ponto de coleta com nome "ELY" e adicionado pelo sistema
 
@@ -82,7 +82,3 @@ Feature: Gerar historico de coleta
     And seleciono esta coleta
     When aperto o botao Delete
     Then estou na pagina de listagem e esta coleta nao consta mais
-    
-    
-
- 

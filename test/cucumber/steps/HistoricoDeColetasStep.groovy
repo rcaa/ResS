@@ -21,8 +21,6 @@ And (~'^clico em adicionar coleta do dia$'){ ->
 }
 Then (~'^eh adicionada com sucesso$'){ ->
 }
-
-
 Given(~'^nao foi criada um relatorio de coleta do dia "([^"]*)" do restaurante "([^"]*)"$'){@Format("dd/MM/yyyy") Date dia, String restaurante ->
     coleta = Coleta.findByDataAndNome(dia,restaurante)
     assert coleta == null
@@ -35,8 +33,6 @@ When (~'^crio um novo relatorio o dia "([^"]*)" do restaurante "([^"]*)"$'){@For
 Then (~'o relatorio eh adicionado ao historico de coletas$'){ ->
     assert Coleta.findByDataAndNome(data,restaurante) != null
 }
-
-
 Given (~'^ja foi criado o relatorio de coleta do dia "([^"]*)" do restaurante "([^"]*)"$'){@Format("dd/MM/yyyy") Date dia, String restaurante ->
    dat = dia
     rest = restaurante
@@ -46,14 +42,11 @@ Given (~'^ja foi criado o relatorio de coleta do dia "([^"]*)" do restaurante "(
 When (~'altero o valor do volume da coleta para "([^\"]*)"$') { int vol ->
     volume = vol
     HistoricoTestDataAndOperations.editColeta(volume, c)
-
 }
 Then (~'o valor do volume eh atualizado$') { ->
     c = Coleta.findByDataAndNome(dat,rest)
     assert c.getVolume() == volume
 }
-
-
 Given  (~'^existe uma coleta do dia "([^"]*)" do restaurante "([^"]*)"$'){@Format("dd/MM/yyyy") Date dia, String restaurante ->
     coleta = Coleta.findByDataAndNome(dia,restaurante)
     assert coleta != null
@@ -65,8 +58,6 @@ Then  (~'^nao existem mais coleta dia "([^"]*)" do restaurante "([^"]*)"$'){@For
     coleta = Coleta.findByDataAndNome(dia,restaurante)
     assert coleta == null
 }
-
-
 Given(~'^estou na pagina de editar coleta$'){ ->
     to HistoricoPage
     page.selectAdicionarColeta()
@@ -84,8 +75,6 @@ And(~'^e envio as mudancas'){ ->
 }
 Then (~'^o volume eh alterado com sucesso$'){ ->
 }
-
-
 Given(~'^ja existe uma coleta com nome "([^"]*)" e data "([^"]*)"$'){String nome, @Format("dd/MM/yyyy") Date dia ->
     HistoricoTestDataAndOperations.CreateHistorico(nome,dia)
     coletaAntiga = Coleta.findByNome(nome)
@@ -99,9 +88,6 @@ Then(~'^nao eh criada a nova coleta$') { ->
     assert c[0] == coletaAntiga
     assert c[1] != coletaNova
 }
-
-
-
 And(~'^existe outra coleta com nome "([^"]*)" e data "([^"]*)"$'){String nome, @Format("dd/MM/yyyy") Date dia ->
     HistoricoTestDataAndOperations.CreateHistorico(nome,dia)
     coletaEditada = Coleta.findByNomeAndData(nome,dia)
@@ -109,7 +95,6 @@ And(~'^existe outra coleta com nome "([^"]*)" e data "([^"]*)"$'){String nome, @
     dataAntiga = dia
 }
 When(~'^tento editar o nome "cantina" para "([^"]*)"$') {String novoNome->
-
     HistoricoTestDataAndOperations.editNomeColeta(novoNome,coletaEditada)
 }
 Then(~'^a edicao nao sera realizada$') { ->
@@ -118,10 +103,8 @@ Then(~'^a edicao nao sera realizada$') { ->
 }
 
 When(~'^tento editar a data "07/11/2015" para "([^"]*)"$') { @Format("dd/MM/yyyy") Date novoDia->
-
     HistoricoTestDataAndOperations.editDataColeta(novoDia,coletaEditada)
 }
-
 Given(~'^estou na pagina de listagem de coletas$'){->
     to ColetaListPage
     at ColetaListPage
@@ -139,27 +122,19 @@ And(~'^seleciono esta coleta$') { ->
 When(~'^aperto o botao Delete$') { ->
     assert withConfirm(true) {
         $("input", name: "_action_delete").click()} != "Are you sure?"
-
 }
 Then(~'^estou na pagina de listagem e esta coleta nao consta mais$') { ->
     at ColetaListPage
 }
-
-
-
-Given(~/^O sistema nao possuir um ponto de coleta com nome "(.*?)"$/) { String nome ->
+Given(~/^O sistema nao possui um ponto de coleta com nome "(.*?)"$/) { String nome ->
 	// Write code here that turns the phrase above into concrete actions
 	coleta = Coleta.findByNome(nome)
-	assert coleta == null
-	
+	assert coleta == null	
 }
-
 When(~/^Eu crio um ponto de coleta com nome "(.*?)", data "(.*?)" e volume "(.*?)"$/) { String nome, String data, String volume ->
-	// Write code here that turns the phrase above into concrete actions
-	
+	// Write code here that turns the phrase above into concrete actions	
 	ColetaTestDataAndOperations.createColeta(nome, data, volume)
 }
-
 Then(~/^O ponto de coleta com nome "(.*?)" e adicionado pelo sistema$/) { String nome ->
 	// Write code here that turns the phrase above into concrete actions
 	coleta = Coleta.findByNome(nome)
