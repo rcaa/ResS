@@ -1,5 +1,6 @@
 package steps
 
+import HistoricoDeColeta.Coleta;
 import residueGenerator.ResidueGenerator
 import residueGenerator.ResidueGeneratorController
 
@@ -57,6 +58,19 @@ class GeneratorTestDataAndOperations{
         cont.save()
         cont.response.reset()
     }
+	
+	static public void criarGerador(String nome, String tipo, String endereco, int mediaDiaria, int mediaMensal, String cnpj){
+		def cont = new ResidueGeneratorController()
+		cont.params << [nameGenerator: nome,
+						type: tipo,
+						cnpj: cnpj,
+						addressGenerator: endereco,
+						averageMonthlyMeals: mediaMensal,
+						averageDailyMeals: mediaDiaria]
+		cont.create()
+		cont.saveGenerator()
+		cont.response.reset()
+	}
 
     static public void createGeneratorName(String name){
         def cont = new ResidueGeneratorController()
@@ -141,6 +155,12 @@ class GeneratorTestDataAndOperations{
         cont.save()
         cont.response.reset()
     }
+	
+	static public void deleteGenerator(ResidueGenerator gerador){
+		def cont = new ResidueGeneratorController()
+		cont.deleteGenerator(gerador.id)
+		cont.response.reset()
+	}
 
     //LIST FEATURES
     static public void createGeneratorWithDailyMeal(String address, int dailymeal){

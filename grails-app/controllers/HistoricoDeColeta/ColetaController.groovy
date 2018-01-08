@@ -44,6 +44,10 @@ class ColetaController {
         redirect(action: "show", id: coletaInstance.id)
         }
     }
+	
+	def saveColeta(){
+		save()
+	}
 
     def show(Long id) {
         def coletaInstance = Coleta.get(id)

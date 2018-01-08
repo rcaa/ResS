@@ -29,11 +29,10 @@ Feature: register a residue generator
     And I register a different generator with the address "Bubble Street number 7"
     Then I should see an error message
 
-  Scenario: new incomplete residue generator
-    Given The system has no generator with the address "Bubble Street number 8"
-    When I register a new generator of residue with some info left incomplete
-    And The address "Bubble Street number 8"
-    Then The new residue generator is not stored by the system
+  Scenario: new residue generator with empty address
+    Given The system has no generator with the cnpj "1919191"
+    When I register a new generator of residue with the address "" and cnpj "1919191"
+    Then The new residue generator with cnpj "1919191" is not stored by the system
 
   Scenario: new incomplete residue generator web
     Given I am at the register new generator page
