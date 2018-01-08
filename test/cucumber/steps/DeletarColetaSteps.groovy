@@ -25,20 +25,19 @@ Given(~/^Eu seleciono a opcao para remocao do ponto de coleta com nome "(.*?)"|$
 		$("input", name: "_action_delete").click()} == "Are you sure?"
     }
 
-When(~/^recuso a mensagem de confirmacao$/) { ->
-    }
-
-Then(~/^Eu visualizo ponto na pagina de listagem$/) { ->
-    at ColetaDeletePage 
+Then(~/^Eu visualizo o ponto com o nome "(.*?)" na pagina de listagem$/) { String nome ->
+    coleta = Coleta.findByNome(nome)
+	assert coleta != null 
 }
 
-When(~/^aceito a mensagem de confirmacao$/) { ->
+When(~/^Eu escolho a opcao para remover o ponto de coleta com nome "(.*?)" e data "(.*?)"$/) { String arg1, String arg2 ->
 	assert withConfirm(true) {
 		$("input", name: "_action_delete").click()} == "Are you sure?"
 	}
    
-Then(~/^Eu nao visualizo mais o ponto na pagina de listagem$/) { ->
-    at ColetaDeletePage
+Then(~/^Eu nao visualizo mais o ponto com o nome "(.*?)" e data "(.*?)" na pagina de listagem$/) { String nome, String data ->
+    coleta = Coleta.findByNome(nome)
+	assert coleta != null
 }
 
 Given(~/^O sistema possui o ponto de coleta com nome "(.*?)"$/) { String nome ->
