@@ -14,15 +14,26 @@ class ColetaController {
         params.max = Math.min(max ?: 10, 100)
         [coletaInstanceList: Coleta.list(params), coletaInstanceTotal: Coleta.count()]
     }
-
+	def createAndSave(){
+		Coleta coletaInstance = new Coleta(params)
+		respond coletaInstance.errors, view: 'create'
+		if (!coletaInstance.save(flush: true)) {
+			render(view: "create", model: [coletaInstance: coletaInstance])
+			return
+		}
+		flash.message = message(code: 'default.created.message', args: [message(code: 'coleta.label', default: 'Coleta'), coletaInstance.id])
+		redirect(action: "show", id: coletaInstance.id)		
+	}	
     def create() {
         [coletaInstance: new Coleta(params)]
     }
 
     def save() {
-        Coleta a = new Coleta(params)
-        if(Coleta.findByNomeAndData(a.nome,a.data) == null){
-        def coletaInstance = new Coleta(params)
+        Coleta coletaInstance = new Coleta(params)
+        if(Coleta.findByNomeAndData(coletaInstance.nome,coletaInstance.data) == null){
+				respond coletaInstance.errors, view: 'create'
+				return
+        	
 
         if (!coletaInstance.save(flush: true)) {
             render(view: "create", model: [coletaInstance: coletaInstance])
@@ -67,7 +78,6 @@ class ColetaController {
             redirect(action: "list")
             return
         }
-
         if (version != null) {
             if (coletaInstance.version > version) {
                 coletaInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
@@ -77,14 +87,11 @@ class ColetaController {
                 return
             }
         }
-
         coletaInstance.properties = params
-
         if (!coletaInstance.save(flush: true)) {
             render(view: "edit", model: [coletaInstance: coletaInstance])
             return
         }
-
         flash.message = message(code: 'default.updated.message', args: [message(code: 'coleta.label', default: 'Coleta'), coletaInstance.id])
         redirect(action: "show", id: coletaInstance.id)
     }
@@ -96,7 +103,6 @@ class ColetaController {
             redirect(action: "list")
             return
         }
-
         try {
             coletaInstance.delete(flush: true)
             flash.message = message(code: 'default.deleted.message', args: [message(code: 'coleta.label', default: 'Coleta'), id])
