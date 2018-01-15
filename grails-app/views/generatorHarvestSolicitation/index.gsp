@@ -89,6 +89,7 @@
     </div>
     <div>
         <a href="/ResS/Dashboard/"  class="action-button shadow animate green">Ok</a>
+        <g:link controller="GeneratorHarvestSolicitation" action="paginaEditar">Editar</g:link>
     </div>
 </div>
 </body>
