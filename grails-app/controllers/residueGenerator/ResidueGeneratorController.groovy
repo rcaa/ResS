@@ -108,6 +108,10 @@ class ResidueGeneratorController {
         redirect(action: "show", id: residueGeneratorInstance.id)
     }
 
+	def updateGenerator(Long id, Long version) {
+		update(id, version)
+	}
+
     def delete(Long id) {
         def residueGeneratorInstance = ResidueGenerator.get(id)
         if (!residueGeneratorInstance) {
