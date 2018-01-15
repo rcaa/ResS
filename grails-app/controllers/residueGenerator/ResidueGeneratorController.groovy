@@ -19,6 +19,24 @@ class ResidueGeneratorController {
         params.max = Math.min(max ?: 10, 100)
         [residueGeneratorInstanceList: ResidueGenerator.list(params), residueGeneratorInstanceTotal: ResidueGenerator.count()]
     }
+	
+	def listGroupByType(Integer max) {
+        def maximo = Math.min(max ?: 10, 100)
+		def listaGeral = ResidueGenerator.list(params)
+		
+		def listaAgrupada = [:]
+		listaGeral.each {
+			if(listaAgrupada.containsKey(it.type)){
+				listaAgrupada[it.type]['averageDailyMeals'] += it.averageDailyMeals
+				listaAgrupada[it.type]['averageMonthlyMeals'] += it.averageMonthlyMeals
+				listaAgrupada[it.type]['generatorCount'] += 1
+			}else{
+				listaAgrupada[it.type] = ['type':it.type, 'averageDailyMeals':it.averageDailyMeals, 'averageMonthlyMeals':it.averageMonthlyMeals, 'generatorCount':1]
+			}
+		}
+		
+        [residueGeneratorInstanceList: listaAgrupada.values(), residueGeneratorInstanceTotal: listaAgrupada.size()]
+    }
 
     def create() {
         [residueGeneratorInstance: new ResidueGenerator(params)]
@@ -89,6 +107,10 @@ class ResidueGeneratorController {
         flash.message = message(code: 'default.updated.message', args: [message(code: 'residueGenerator.label', default: 'ResidueGenerator'), residueGeneratorInstance.id])
         redirect(action: "show", id: residueGeneratorInstance.id)
     }
+
+	def updateGenerator(Long id, Long version) {
+		update(id, version)
+	}
 
     def delete(Long id) {
         def residueGeneratorInstance = ResidueGenerator.get(id)

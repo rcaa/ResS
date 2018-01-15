@@ -13,11 +13,11 @@
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="list" action="listGroupByType"><g:message code="default.list.group.type.label" /></g:link></li>
+				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 			</ul>
 		</div>
 		<div id="list-residueGenerator" class="content scaffold-list" role="main">
-			<h1>Residue Generator List</h1>
+			<h1>Residue Generator List Grouped by Type</h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -25,17 +25,13 @@
 				<thead>
 					<tr>
 					
-						<g:sortableColumn property="nameGenerator" title="${message(code: 'residueGenerator.nameGenerator.label', default: 'Name')}" />
-					
 						<g:sortableColumn property="type" title="${message(code: 'residueGenerator.type.label', default: 'Type')}" />
-					
-						<g:sortableColumn property="addressGenerator" title="${message(code: 'residueGenerator.addressGenerator.label', default: 'Address')}" />
 					
 						<g:sortableColumn property="averageDailyMeals" title="${message(code: 'residueGenerator.averageDailyMeals.label', default: 'Avg Daily Meals')}" />
 					
 						<g:sortableColumn property="averageMonthlyMeals" title="${message(code: 'residueGenerator.averageMonthlyMeals.label', default: 'Avg Monthly Meals')}" />
-					
-						<g:sortableColumn property="cnpj" title="${message(code: 'residueGenerator.cnpj.label', default: 'Cnpj')}" />
+						
+						<g:sortableColumn property="generatorCount" title="${message(code: 'residueGenerator.averageMonthlyMeals.label', default: 'Number of Generators')}" />
 					
 					</tr>
 				</thead>
@@ -44,17 +40,13 @@
 
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${residueGeneratorInstance.id}">${fieldValue(bean: residueGeneratorInstance, field: "nameGenerator")}</g:link></td>
+						<td>${residueGeneratorInstance['type']}</td>
 					
-						<td>${fieldValue(bean: residueGeneratorInstance, field: "type")}</td>
+						<td>${residueGeneratorInstance['averageDailyMeals']}</td>
 					
-						<td>${fieldValue(bean: residueGeneratorInstance, field: "addressGenerator")}</td>
+						<td>${residueGeneratorInstance['averageMonthlyMeals']}</td>
 					
-						<td>${fieldValue(bean: residueGeneratorInstance, field: "averageDailyMeals")}</td>
-					
-						<td>${fieldValue(bean: residueGeneratorInstance, field: "averageMonthlyMeals")}</td>
-					
-						<td>${fieldValue(bean: residueGeneratorInstance, field: "cnpj")}</td>
+						<td>${residueGeneratorInstance['generatorCount']}</td>
 					
 					</tr>
 				</g:each>
