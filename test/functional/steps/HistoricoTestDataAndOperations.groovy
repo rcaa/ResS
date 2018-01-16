@@ -35,7 +35,7 @@ class HistoricoTestDataAndOperations {
         cont.response.reset()
     }
 
-    static public void editColeta(int volume,Coleta coleta){
+    static public void editVolumeColeta(int volume,Coleta coleta){
         def colet = coleta
         colet.setVolume(volume)
         def cont =  new ColetaController()
