@@ -21,7 +21,7 @@ class ColetaController {
 
     def save() {
         Coleta a = new Coleta(params)
-        if(Coleta.findByNomeAndData(a.nome,a.data) == null){
+        if(Coleta.findByNomeAndData(a.nome,a.dataColeta) == null){
         def coletaInstance = new Coleta(params)
 
         if (!coletaInstance.save(flush: true)) {
@@ -88,19 +88,22 @@ class ColetaController {
         flash.message = message(code: 'default.updated.message', args: [message(code: 'coleta.label', default: 'Coleta'), coletaInstance.id])
         redirect(action: "show", id: coletaInstance.id)
     }
+	
+	def getDefaultColetaMessage(){
+		flash.message = message(code: 'default.deleted.message', args: [message(code: 'coleta.label', default: 'Coleta'), id])
+		redirect(action: "list")
+	}
 
     def delete(Long id) {
         def coletaInstance = Coleta.get(id)
         if (!coletaInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'coleta.label', default: 'Coleta'), id])
-            redirect(action: "list")
+            getDefautlColetaMessage()
             return
         }
 
         try {
             coletaInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'coleta.label', default: 'Coleta'), id])
-            redirect(action: "list")
+            getDefaultColetaMessage()
         }
         catch (DataIntegrityViolationException e) {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'coleta.label', default: 'Coleta'), id])

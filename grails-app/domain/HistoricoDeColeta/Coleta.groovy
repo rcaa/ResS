@@ -5,25 +5,25 @@ import cucumber.api.Format
 class Coleta {
 
     String nome // nome do estabelecimento
-    Date data // data da coleta
+    Date dataColeta // data da coleta
     int volume // volume coletado
 
 
     static constraints = {
 
         nome blank: true // no caso de ser ecoponto pode não ter nome
-        data blank: false, nullable: false
+        dataColeta blank: false, nullable: false
         volume  blank: false, nullable: false
     }
     void setName(String novoNome){
-        if(Coleta.findByNomeAndData(novoNome,this.data) == null){
+        if(Coleta.findByNomeAndData(novoNome,this.dataColeta) == null){
             this.nome = novoNome
         }
     }
 
     void setDate(@Format("dd/MM/yyyy")Date novaData){
         if(Coleta.findByNomeAndData(this.nome,novaData) == null){
-            this.data = novaData
+            this.dataColeta = novaData
         }
     }
 }

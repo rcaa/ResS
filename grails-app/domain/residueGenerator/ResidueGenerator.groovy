@@ -34,4 +34,14 @@ class ResidueGenerator {
             return nameGenerator
         }
     }
+	@Override
+	boolean equals(Object obj){
+		if (obj instanceof ResidueGenerator){
+			ResidueGenerator residueGenerator = (ResidueGenerator) obj
+			if(residueGenerator.addressGenerator  == addressGenerator){
+				return true
+			}
+		}
+		return false
+	}
 }

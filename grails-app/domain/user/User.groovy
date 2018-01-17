@@ -18,5 +18,18 @@ class User {
         login nullable: false, blank: false, unique: true
         password nullable:false, blank: false, minSize: 6
     }
-
+	@Override
+	String toString(){
+			return name
+	}
+	@Override
+	boolean equals(Object obj){
+		if (obj instanceof User){
+			User user = (User) obj
+			if(user.id  == id){
+				return true
+			}
+		}
+		return false
+	}
 }
