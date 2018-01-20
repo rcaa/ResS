@@ -20,8 +20,7 @@ class ResidueGeneratorController {
         [residueGeneratorInstanceList: ResidueGenerator.list(params), residueGeneratorInstanceTotal: ResidueGenerator.count()]
     }
 	
-	def listGroupByType(Integer max) {
-        def maximo = Math.min(max ?: 10, 100)
+	def listGroupByType() {
 		def listaGeral = ResidueGenerator.list(params)
 		
 		def listaAgrupada = [:]
