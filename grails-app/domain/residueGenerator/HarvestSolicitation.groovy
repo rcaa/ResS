@@ -18,4 +18,8 @@ class HarvestSolicitation {
         solicitationDate nullable:false,blank:false
         estimatedAmountOfResidue nullable:false,blank:false
     }
+	
+	String toString() {
+		return "Harvest Solicitation of "+residueGenerator.nameGenerator+" on "+solicitationDate.toString()
+	}
 }

@@ -26,4 +26,21 @@ class Coleta {
             this.dataColeta = novaData
         }
     }
+	
+	String toString() {
+		return nome;
+	}
+	
+	@Override
+	boolean equals(Object obj){
+		if (obj instanceof Coleta){
+			Coleta coleta = (Coleta) obj
+			if(coleta.data  == this.data && coleta.volume == this.volume && coleta.nome == this.nome){
+				return true
+			}
+		}
+	return false
+	}
+	
+
 }

@@ -20,8 +20,7 @@ class ResidueGeneratorController {
         [residueGeneratorInstanceList: ResidueGenerator.list(params), residueGeneratorInstanceTotal: ResidueGenerator.count()]
     }
 	
-	def listGroupByType(Integer max) {
-        def maximo = Math.min(max ?: 10, 100)
+	def listGroupByType() {
 		def listaGeral = ResidueGenerator.list(params)
 		
 		def listaAgrupada = [:]
@@ -49,7 +48,7 @@ class ResidueGeneratorController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'residueGenerator.label', default: 'ResidueGenerator'), residueGeneratorInstance.id])
+		flash.message = getDefaultMessage('default.created.message', residueGeneratorInstance.id)
         redirect(action: "show", id: residueGeneratorInstance.id)
     }
 	
@@ -60,7 +59,7 @@ class ResidueGeneratorController {
     def show(Long id) {
         def residueGeneratorInstance = ResidueGenerator.get(id)
         if (!residueGeneratorInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'residueGenerator.label', default: 'ResidueGenerator'), id])
+			flash.message = getDefaultMessage('default.not.found.message', id)
             redirect(action: "list")
             return
         }
@@ -71,7 +70,7 @@ class ResidueGeneratorController {
     def edit(Long id) {
         def residueGeneratorInstance = ResidueGenerator.get(id)
         if (!residueGeneratorInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'residueGenerator.label', default: 'ResidueGenerator'), id])
+			flash.message = getDefaultMessage('default.not.found.message', id)
             redirect(action: "list")
             return
         }
@@ -82,7 +81,7 @@ class ResidueGeneratorController {
     def update(Long id, Long version) {
         def residueGeneratorInstance = ResidueGenerator.get(id)
         if (!residueGeneratorInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'residueGenerator.label', default: 'ResidueGenerator'), id])
+			flash.message = getDefaultMessage('default.not.found.message', id)
             redirect(action: "list")
             return
         }
@@ -104,7 +103,7 @@ class ResidueGeneratorController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'residueGenerator.label', default: 'ResidueGenerator'), residueGeneratorInstance.id])
+		flash.message = getDefaultMessage('default.updated.message', id)
         redirect(action: "show", id: residueGeneratorInstance.id)
     }
 
@@ -115,18 +114,18 @@ class ResidueGeneratorController {
     def delete(Long id) {
         def residueGeneratorInstance = ResidueGenerator.get(id)
         if (!residueGeneratorInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'residueGenerator.label', default: 'ResidueGenerator'), id])
+			flash.message = getDefaultMessage('default.not.found.message', id)
             redirect(action: "list")
             return
         }
 
         try {
             residueGeneratorInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'residueGenerator.label', default: 'ResidueGenerator'), id])
+			flash.message = getDefaultMessage('default.deleted.message', id)
             redirect(action: "list")
         }
         catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'residueGenerator.label', default: 'ResidueGenerator'), id])
+			flash.message = getDefaultMessage('default.not.deleted.message', id)
             redirect(action: "show", id: id)
         }
     }
@@ -134,4 +133,8 @@ class ResidueGeneratorController {
     def deleteGenerator(Long id) {
 		delete(id)
     }
+
+	def getDefaultMessage(String code, Long id) {
+		message(code: code, args: [message(code: 'residueGenerator.label', default: 'ResidueGenerator'), id])
+	}
 }
