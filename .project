@@ -26,7 +26,7 @@
 		<link>
 			<name>.link_to_grails_plugins</name>
 			<type>2</type>
-			<location>C:/ufrpe/workspaces/es/ResS/target/work/plugins</location>
+			<location>C:/ufrpe/workspace/es/ResS/target/work/plugins</location>
 		</link>
 	</linkedResources>
 </projectDescription>

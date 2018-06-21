@@ -100,7 +100,7 @@ class GeneratorTestDataAndOperations{
         cont.response.reset()
     }
 
-    static public void showGeneratorByName(String name ->
+    static public void showGeneratorByName(String name) {
         def cont = new ResidueGeneratorController()
         def newGenerator = findGeneratorByName(name)
             cont.show(newGenerator)
