@@ -21,7 +21,8 @@ class ColetaController {
 
     def save() {
         Coleta a = new Coleta(params)
-        if(Coleta.findByNomeAndData(a.nome,a.dataColeta) == null){
+        Coleta coletaSearch = Coleta.findByNomeAndData(a.nome,a.dataColeta) 
+		if(coletaSearch == null){
         def coletaInstance = new Coleta(params)
 
         if (!coletaInstance.save(flush: true)) {

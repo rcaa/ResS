@@ -107,7 +107,7 @@ class ResidueGeneratorController {
         redirect(action: "show", id: residueGeneratorInstance.id)
     }
 
-	def updateGenerator(Long id, Long version) {
+	def private updateGenerator(Long id, Long version) {
 		update(id, version)
 	}
 
