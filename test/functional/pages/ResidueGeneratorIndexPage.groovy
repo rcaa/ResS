@@ -10,4 +10,7 @@ class ResidueGeneratorIndexPage extends Page {
         title ==~ titulo
     }
 
+	def selectNewResidueGeneratorPage(){
+		$("a", class: "create").click()
+	}
 }

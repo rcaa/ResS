@@ -21,4 +21,8 @@ class HomePage extends Page {
 	def listColeta(){
 		$('#Coleta').click();
 	}
+	
+	def selectUserArea(){
+		$('#User').click();
+	}
 }

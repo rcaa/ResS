@@ -3,6 +3,9 @@ package steps
 import pages.GithubPage
 import pages.HomePage
 import pages.ResidueGeneratorIndexPage
+import pages.UserIndexPage
+import pages.ResidueGeneratorListPage
+import pages.ResidueGeneratorCreatePage
 
 import static cucumber.api.groovy.EN.*
 
@@ -25,4 +28,21 @@ When(~'I select the github ribbon$'){ ->
 
 Then(~'I should be at the ResS github repository page$'){ ->
     at GithubPage
+}
+
+When(~/^I access the User area$/) { ->
+	page.selectUserArea()
+}
+
+Then(~/^I should be at the User Index page$/) { ->
+	at UserIndexPage
+}
+
+When(~/^I access the New Residue Generator page$/) { ->
+	at ResidueGeneratorIndexPage
+	page.selectNewResidueGeneratorPage()
+}
+
+Then(~/^I should be at the New Residue Generator page$/) { ->
+	at ResidueGeneratorCreatePage
 }
