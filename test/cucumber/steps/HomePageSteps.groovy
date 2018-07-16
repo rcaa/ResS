@@ -6,6 +6,7 @@ import pages.ResidueGeneratorIndexPage
 import pages.UserIndexPage
 import pages.ResidueGeneratorListPage
 import pages.ResidueGeneratorCreatePage
+import pages.UserCreatePage
 
 import static cucumber.api.groovy.EN.*
 
@@ -30,12 +31,17 @@ Then(~'I should be at the ResS github repository page$'){ ->
     at GithubPage
 }
 
-When(~/^I access the User area$/) { ->
+And(~/^I access the User area$/) { ->
 	page.selectUserArea()
 }
 
-Then(~/^I should be at the User Index page$/) { ->
+When(~/^I access the New User page$$/){ ->
 	at UserIndexPage
+	page.selectNewUserPage()
+}
+
+Then(~/^I should be at the New User page$/) { ->
+	at UserCreatePage
 }
 
 When(~/^I access the New Residue Generator page$/) { ->

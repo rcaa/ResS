@@ -9,5 +9,9 @@ class UserIndexPage extends Page {
 	static at = {
 		title ==~ titulo
 	}
+	
+	def selectNewUserPage(){
+		$("a", class: "create").click()
+	}
 
 }
