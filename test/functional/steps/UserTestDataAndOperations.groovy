@@ -7,7 +7,7 @@ class UserTestDataAndOperations{
 	
 	static public void criarUser(int id, String nome, String endereco, String login, String senha){
 		def controller = new UserController()
-		controller.params << [id: id, 
+		controller.params << [id: id,
 							  name: nome,
 							  address: endereco,
 							  login: login,

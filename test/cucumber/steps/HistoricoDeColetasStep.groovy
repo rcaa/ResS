@@ -52,10 +52,7 @@ And (~'^clico em adicionar coleta do dia$'){ ->
 Then (~'^eh adicionada com sucesso$'){ ->
 }
 
-/////////////////////////////////////////////////////////////////////////////////
-
 Given(~'^o sistema nao tem um relatorio de coleta do dia "([^"]*)" do restaurante "([^"]*)"$'){ String data, String restaurante ->
-	//def dia = new Date().parse("dd/MM/yyyy", data)
 	def dia = new Date()
 	dia.parse("dd/MM/yyyy", data)
     def coleta = Coleta.findByDataColetaAndNome(dia,restaurante)
