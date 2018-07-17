@@ -39,7 +39,7 @@ Feature: Create a harvest solicitation
        Then  I should stay at the same page
        And   see an error message indicating why the submission failed
      
-   @ignore    
+       
      Scenario: passing a String in the estimated residue amount field
 		Given I am at the harvest solicitation creation page
 		When  fill the amount of residue field with String "aaa"

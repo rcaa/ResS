@@ -49,4 +49,11 @@ Then(~'I should see the new harvest solicitation on the solicitation page$'){ ->
 }
 //--------------------------------------vinicius----------------------------------------
 
+When(~/^fill the amount of residue field with String "(.*?)"$/) { String arg1 ->
+	page.fillAmountField(arg1)
+}
 
+Then(~/^I should stay on the harvest solicitation creation page not saving the request$/) { ->
+	to CreateHarvestSolicitationPage
+    at CreateHarvestSolicitationPage
+}
