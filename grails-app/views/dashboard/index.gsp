@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
 	<meta name="layout" content="main"/>
-	<title>ResS</title>
+	<title>Residue Generator List</title>
 	<style type="text/css" media="screen">
 
 	#forkongithub a{
