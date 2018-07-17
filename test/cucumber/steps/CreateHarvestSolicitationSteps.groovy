@@ -47,3 +47,6 @@ Then(~'I should see the new harvest solicitation on the solicitation page$'){ ->
     at HarvestSolicitationViewPage
     assert page.hasLabel() == true
 }
+//--------------------------------------vinicius----------------------------------------
+
+

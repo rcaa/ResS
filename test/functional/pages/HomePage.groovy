@@ -21,4 +21,6 @@ class HomePage extends Page {
 	def listColeta(){
 		$('#Coleta').click();
 	}
+	
+
 }
