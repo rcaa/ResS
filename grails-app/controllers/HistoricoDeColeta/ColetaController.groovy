@@ -110,4 +110,12 @@ class ColetaController {
             redirect(action: "show", id: id)
         }
     }
+	
+	def acharColetaEmPeriodoTempo(data1, data2){
+		def coletas = Coleta.findAll {it.data.after(data1) && it.data.before(data2)}	
+	}
+	def paginaColetaPeriodoTempo(){
+		render view: "paginaColetaPeriodoTempo"
+		
+	}
 }

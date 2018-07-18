@@ -39,6 +39,21 @@ class GeneratorHarvestSolicitationController {
         residueGenerator.save(flush: true)
         redirect(action: "index", id: harvestSolicitationInstance.generatorId)
     }
+	def update(Long id) {
+		def harvestSolicitationInstance = HarvestCompany.get(id)
+		if (!harvestSolicitationInstance) {
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'harvestcompany.label', default: 'HarvestCompany'), id])
+			redirect(action: "paginaEditar")
+			//render(view: "index", model: [residueGeneratorInstance: residueGeneratorInstance, harvester:harvester])
+			//render view: "index"
+			return
+		}
+		[harvestCompany: harvestSolicitationInstance]
+	}
+	def paginaEditar(){
+		render view: "edit"
+		
+	}
 
 
 }

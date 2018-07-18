@@ -44,13 +44,11 @@ class HistoricoTestDataAndOperations {
     }
 
     static public void editNomeColeta(String novoNome,Coleta coleta){
-        def colet = coleta
-        colet.setName(novoNome)
+		Coleta c = coleta.findByNome(novoNome)
+		c.setName(novoNome)
         def cont =  new ColetaController()
         cont.params << colet.properties
         cont.update()
-
-
     }
 
     static public void editDataColeta(@Format("dd/MM/yyyy") Date novaData,Coleta coleta){
