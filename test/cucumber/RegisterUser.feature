@@ -5,7 +5,10 @@ Feature: register a user
   
    Scenario: failed to register new user with empty address
     Given The system has no user with the login "FULANO"
-    When I register a new user with login "FULANO" and address "" 
-    Then The new user with login "FULANO" is not stored by the system
+    When  I register a new user with login "FULANO" and address "" 
+    Then  The new user with login "FULANO" is not stored by the system
     
-    
+   Scenario: failed to register new user with empty password
+    Given The system has no user with the login "FULANO"
+    When  I register a new user with login "FULANO" and password "" 
+    Then  The new user with login "FULANO" is not stored by the system

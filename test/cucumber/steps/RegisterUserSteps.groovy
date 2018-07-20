@@ -15,6 +15,10 @@ When(~/^I register a new user with login "(.*?)" and address "(.*?)"$/) { String
 	UserTestDataAndOperations.creatUser(1, "FULANO", address, login, "123456")
 }
 
+When(~/^I register a new user with login "(.*?)" and password "(.*?)"$/) { String login, String password ->
+	UserTestDataAndOperations.creatUser(1, "FULANO", "rua ladrilho", login, password)
+}
+
 Then(~/^The new user with login "(.*?)" is not stored by the system$/) { String login ->
 	def usuario = User.findByLogin(login)
 	assert usuario == null
