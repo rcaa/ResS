@@ -7,6 +7,34 @@ import static cucumber.api.groovy.EN.*
 
 // ---------------------------------------------EDIT SUCCESS---------------------------------------------
 
+Given(~/^o sistema tem um residue generator de cnpj "(.*?)"$/) { String cnpj ->
+	generator = ResidueGenerator.findByCnpj(cnpj)
+	assert generator != null
+}
+
+When(~/^eu troco seu cnpj para "(.*?)"$/) { String novoCnpj ->
+	cnpj = novoCnpj
+	GeneratorTestDataAndOperations.editGeneratorCnpj(cnpj,generator)
+}
+
+Then(~/^o sistema deve alterar o cnpj no banco de dados$/) { ->
+	assert ResidueGenerator.findByCnpj(cnpj) != null
+}
+
+Given(~/^o sistema tem um residue generator com nome "(.*?)"$/) { String nome ->
+	 generator = ResidueGenerator.findByNameGenerator(nome)
+	 assert generator != null
+	}
+
+When(~/^eu troco o seu nome para "(.*?)"$/) { String novoNome ->
+	name = novoNome
+    GeneratorTestDataAndOperations.editGeneratorName(name, generator)
+}
+
+Then(~/^o sistema nao deve alterar o nome no banco de dados$/) { ->
+	assert ResidueGenerator.findByNameGenerator(name) == null
+}
+
 Given(~'^the system has a residue generator with the address "([^"]*)"$') { String address ->
     GeneratorTestDataAndOperations.createGenerator(address)
     generator = ResidueGenerator.findByAddressGenerator(address)
