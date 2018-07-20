@@ -3,6 +3,17 @@ Feature: Edit the residue generator registration data
   I want to edit my registration data
   so that i can keep my registration data up to date
 
+  
+  Scenario: Alterar nome do residue generator
+	Given o sistema tem um residue generator com nome "Nuka Cola"
+	When eu troco o seu nome para "Restaurante abc"
+	Then o sistema nao deve alterar o nome no banco de dados
+
+ Scenario: Alterar cnpj do residue generator
+ 	Given o sistema tem um residue generator de cnpj "0000000"
+ 	When eu troco seu cnpj para "1043578094"
+ 	Then o sistema deve alterar o cnpj no banco de dados
+
   #if ($ All the fields are filled correctly)
 @ignore
   Scenario: All the fields are filled correctly

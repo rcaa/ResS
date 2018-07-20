@@ -59,6 +59,8 @@ class GeneratorTestDataAndOperations{
         cont.save()
         cont.response.reset()
     }
+
+	
 	
 	static public void criarGerador(String nome, String tipo, String endereco, int mediaDiaria, int mediaMensal, String cnpj){
 		def cont = new ResidueGeneratorController()
@@ -129,6 +131,42 @@ class GeneratorTestDataAndOperations{
         }
     }
 
+	
+	static public void editGeneratorName(String name, def residueGenerator){
+		if(name != null && residueGenerator != null) {
+			def existingGenerator = ResidueGenerator.findByCnpj(residueGenerator.cnpj)
+
+			def cont = new ResidueGeneratorController()
+			cont.params << [nome: name,
+							type: existingGenerator.type,
+							cnpj: existingGenerator.cnpj,
+							addressGenerator: existingGenerator.addressGenerator,
+							averageMonthlyMeals: existingGenerator.averageDailyMeals,
+							averageDailyMeals: existingGenerator.averageMonthlyMeals]
+			cont.updateGenerator(existingGenerator.id, existingGenerator.getVersion()+1)
+			cont.response.reset()
+		}
+	}
+
+	static public void editGeneratorCnpj(String cnpj, def residueGenerator){
+		if(cnpj != null && residueGenerator != null) {
+			def existingGenerator = ResidueGenerator.findByCnpj(residueGenerator.cnpj)
+
+			def cont = new ResidueGeneratorController()
+			cont.params << [nome: existingGenerator.nameGenerator,
+							type: existingGenerator.type,
+							cnpj: cnpj,
+							addressGenerator: existingGenerator.addressGenerator,
+							averageMonthlyMeals: existingGenerator.averageDailyMeals,
+							averageDailyMeals: existingGenerator.averageMonthlyMeals]
+			cont.updateGenerator(existingGenerator.id, existingGenerator.getVersion()+1)
+			cont.response.reset()
+		}
+	}
+
+	
+	
+	
     static public getAltGenerator(String address){
         def novoGenerator =  [nameGenerator: "Alt",
                               type: "Restaurante",
