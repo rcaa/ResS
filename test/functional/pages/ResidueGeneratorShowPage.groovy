@@ -7,7 +7,7 @@ import geb.Page
  */
 class ResidueGeneratorShowPage extends Page{
 
-    def titulo = "http://localhost:8070/residueGenerator/show/1"
+    def titulo = "Show ResidueGenerator"
     static url = "residueGenerator/show/1"
 
     static at = {
@@ -24,10 +24,17 @@ class ResidueGeneratorShowPage extends Page{
         }
     }
 
+	def clickEditar(){
+		$("a", href: "/ResS/residueGenerator/edit/1").click()
+	}
 
     //LIST FEATURE
     def selectListResidueGenerators(){
         $("input",name: "listResidueGenerators").click()
     }
     //
+	
+	def ceckLabelAddress(String label){
+		
+	}
 }
