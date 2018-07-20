@@ -6,7 +6,7 @@ import geb.Page
 class CreateHarvestSolicitationPage extends Page {
 
     def titulo = "Create Havest Solicitation"
-    static url = "/ResS/generatorHarvestSolicitation/create/1"
+    static url = "/ResS/generatorHarvestSolicitation/create/3"
 
      static at = {
         title ==~ titulo

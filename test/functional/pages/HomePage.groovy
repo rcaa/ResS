@@ -26,7 +26,4 @@ class HomePage extends Page {
 	def selectUserArea(){
 		$('#User').click();
 	}
-
-	
-
 }

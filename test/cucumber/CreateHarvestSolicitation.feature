@@ -46,9 +46,3 @@ Feature: Create a harvest solicitation
 		And   fill the other required fields
 		And   submit the fields
 		Then  I should stay on the harvest solicitation creation page not saving the request
-       
-       
-	
-	
-	
-	
