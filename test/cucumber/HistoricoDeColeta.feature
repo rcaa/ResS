@@ -3,7 +3,7 @@ Feature: Gerar historico de coleta
   I want to gerar um historico de coletas
   So that eu posso saber o desempenho da minha empresa
   
-  @ignore
+
   Scenario: Criar coleta com nome vazio (controller)
   	Given o sistema nao tem um relatorio de coleta do dia "05/06/2017" do restaurante ""
   	When crio um novo relatorio no dia "05/06/2017" do restaurante "" com volume "22"

@@ -1,9 +1,10 @@
 package pages
-import java.util.LinkedHashMap;
 
+import java.util.LinkedHashMap;
 import geb.Page
 
-class UserCreatePage extends Page{
+class UserCreatePage extends Page {
+
 
 	def titulo = "Create User"
 	static url = "/ResS/user/create"
@@ -25,3 +26,4 @@ class UserCreatePage extends Page{
 	}
 
 }
+

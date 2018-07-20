@@ -1,6 +1,7 @@
 package steps
 
 import HistoricoDeColeta.Coleta;
+import residueGenerator.HarvestSolicitation;
 import residueGenerator.ResidueGenerator
 import residueGenerator.ResidueGeneratorController
 
@@ -229,6 +230,20 @@ class GeneratorTestDataAndOperations{
         return ((isSorted[0].addressGenerator).equals(Residuegenerators[0].addressGenerator) && (isSorted[1].addressGenerator).equals(Residuegenerators[1].addressGenerator))
     }
     ///////
-
+	
+	static public void criarResidueGenerator(String nome,String tipo, String endereco, String cnpj, int averageDailyMeals, int averageMonthlyMeals, boolean hasActiveHarvest, HarvestSolicitation harvestSolicitation){
+		def controller = new ResidueGeneratorController()
+		controller.params << [nameGenerator: nome,
+			                  type: tipo,
+			                  addressGenerator: endereco,
+			                  cnpj: cnpj,
+			                  averageDailyMeals: averageDailyMeals,
+			                  averageMonthlyMeals: averageMonthlyMeals,
+		                      hasActiveHarvest: hasActiveHarvest,
+			                  harvestSolicitation: harvestSolicitation]
+		controller.create()
+		controller.saveGenerator()
+		controller.response.reset()
+	}
 
 }

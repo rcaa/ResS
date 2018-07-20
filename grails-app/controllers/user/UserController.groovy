@@ -20,7 +20,7 @@ class UserController {
     }
 
     def create() {
-        respond new User(params)
+        [userInstance: new User(params)]
     }
 
     @Transactional
@@ -45,6 +45,11 @@ class UserController {
             '*' { respond userInstance, [status: CREATED] }
         }
     }
+	
+	def saveUser() {
+		def user = new User(params)
+		save(user)
+	}
 
     def edit(User userInstance) {
         respond userInstance
@@ -72,25 +77,25 @@ class UserController {
             '*'{ respond userInstance, [status: OK] }
         }
     }
-
-    @Transactional
-    def delete(User userInstance) {
-
-        if (userInstance == null) {
-            notFound()
-            return
-        }
-
-        userInstance.delete flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'User.label', default: 'User'), userInstance.id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
-    }
+	
+	def delete(Long id) {
+		def userInstance = User.get(id)
+		if(!userInstance){
+			flash.message = getDefaultMessage('default.not.found.message', id)
+			redirect(action: "list")
+			return
+		}
+		
+		try{
+			userInstance.delete(flush: true)
+			flash.message = getDefaultMessage('default.deleted.message', id)
+			redirect(action: "list")
+		}
+		catch(Exception e){
+			flash.message = getDefaultMessage('default.not.deleted.message', id)
+			redirect(action: "show", id: id)
+		}
+	}
 
     protected void notFound() {
         request.withFormat {

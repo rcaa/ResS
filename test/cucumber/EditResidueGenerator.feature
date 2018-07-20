@@ -54,4 +54,3 @@ Feature: Edit the residue generator registration data
     Then I should see a message indicating that an error occurred
 
    #see if there is another scenarios to implement
-
