@@ -62,6 +62,4 @@ class CreateHarvestSolicitationTestDataAndOperations {
         cont.save()
         cont.response.reset()
     }
-
-
 }

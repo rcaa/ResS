@@ -3,8 +3,8 @@ import geb.Page
 class HomePage extends Page {
 
 
-    def titulo = "ResS"
-    static url = "/ResS/dashboard"
+    def titulo = "Residue Generator List"
+    static url = "/ResS/dashboard/index"
 
     static at = {
         title ==~ titulo
@@ -20,5 +20,10 @@ class HomePage extends Page {
 	
 	def listColeta(){
 		$('#Coleta').click();
+	}
+	
+	//vinicius
+	def selectUserArea(){
+		$('#User').click();
 	}
 }

@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta name="layout" content="main">
-    <title>Criar solicitacao de coleta</title>
+    <title>Create Havest Solicitation</title>
     <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
     <style type="text/css">
         #mainContent{

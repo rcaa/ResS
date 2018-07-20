@@ -7,7 +7,7 @@ Feature: Create a harvest solicitation
     Given there is no active harvest solicitation for the generator which address is "Elm Street number 13"
     When  I submit the harvest solicitation with "30" litre of residue
     Then  the system should store the solicitation
-
+       
   @ignore
    Scenario: Missing Fields
      Given there is no active harvest solicitation fot the generator which id is "194"
@@ -23,7 +23,7 @@ Feature: Create a harvest solicitation
       And   I submit the harvest solicitation
       Then  the system should not create a harvest solicitation
 
-@ignore
+
      Scenario: Successful creation of a harvest solicitation web
        Given I am at the harvest solicitation creation page
        When  I fill the amount of residue field with "40"
@@ -38,4 +38,11 @@ Feature: Create a harvest solicitation
        And   submit the fields
        Then  I should stay at the same page
        And   see an error message indicating why the submission failed
-
+     
+       
+     Scenario: passing a String in the estimated residue amount field
+		Given I am at the harvest solicitation creation page
+		When  fill the amount of residue field with String "aaa"
+		And   fill the other required fields
+		And   submit the fields
+		Then  I should stay on the harvest solicitation creation page not saving the request

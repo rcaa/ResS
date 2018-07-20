@@ -45,6 +45,11 @@ class UserController {
             '*' { respond userInstance, [status: CREATED] }
         }
     }
+	
+	def saveUser() {
+		def user = new User(params)
+		save(user)
+	}
 
     def edit(User userInstance) {
         respond userInstance
@@ -61,7 +66,7 @@ class UserController {
             respond userInstance.errors, view:'edit'
             return
         }
-
+		
         userInstance.save flush:true
 
         request.withFormat {
@@ -72,6 +77,7 @@ class UserController {
             '*'{ respond userInstance, [status: OK] }
         }
     }
+	
 
     @Transactional
     def delete(User userInstance) {
