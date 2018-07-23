@@ -14,16 +14,10 @@ class HistoricoTestDataAndOperations {
     ]
 
     static public def getColeta(){
-        return findColetaByNomeData("RU","08/04/2015" )
+		Date data = new Date()
+		data.parse("dd/MM/yyyy", "08/04/2015")
+		return Coleta.findByNomeAndDataColeta("RU", data)
     }
-
-    static public def findColetaByNomeData(String rest,@Format("dd/MM/yyyy") Date date ) {
-        coletas.find { coleta ->
-            coleta.nome == rest
-            coleta.data == date
-        }
-    }
-
 
 
     static public void criarColeta(String rest, Date dia, int volume){
