@@ -5,7 +5,7 @@
 	<head>
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'coleta.label', default: 'Coleta')}" />
-		<title>Coleta List</title>
+		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
 		<a href="#list-coleta" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -18,15 +18,15 @@
 		<div id="list-coleta" class="content scaffold-list" role="main">
 			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
+				<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<table>
-				<thead>
+			<thead>
 					<tr>
 					
-						<g:sortableColumn property="nome" title="${message(code: 'coleta.nome.label', default: 'Nome')}" />
+						<g:sortableColumn property="nome" title="${message(code: 'coleta.nome.label', default: 'Nome do estabelecimento')}" />
 					
-						<g:sortableColumn property="data" title="${message(code: 'coleta.data.label', default: 'Data')}" />
+						<g:sortableColumn property="dataColeta" title="${message(code: 'coleta.dataColeta.label', default: 'Data Coleta')}" />
 					
 						<g:sortableColumn property="volume" title="${message(code: 'coleta.volume.label', default: 'Volume')}" />
 					
@@ -38,7 +38,7 @@
 					
 						<td><g:link action="show" id="${coletaInstance.id}">${fieldValue(bean: coletaInstance, field: "nome")}</g:link></td>
 					
-						<td><g:formatDate date="${coletaInstance.data}" /></td>
+						<td><g:formatDate date="${coletaInstance.dataColeta}" /></td>
 					
 						<td>${fieldValue(bean: coletaInstance, field: "volume")}</td>
 					
@@ -47,7 +47,7 @@
 				</tbody>
 			</table>
 			<div class="pagination">
-				<g:paginate total="${coletaInstanceTotal}" />
+				<g:paginate total="${coletaInstanceCount ?: 0}" />
 			</div>
 		</div>
 	</body>
