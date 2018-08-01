@@ -1,3 +1,4 @@
+import HistoricoDeColeta.Coleta
 import harvestCompany.HarvestCompany
 import residueGenerator.ResidueGenerator
 
@@ -12,9 +13,54 @@ class BootStrap {
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
         )
-
-
-
+		def dataColeta1 = new Date() 
+		def coleta1 = new Coleta( 
+				nome: "Coleta UFRJ",
+				dataColeta:dataColeta1,
+				volume: 2
+			)
+		coleta1.save(failOnError: true)
+		
+		def dataColeta2 = new Date()
+		def ruColeta = new Coleta(
+				nome: "Coleta RU",
+				dataColeta: dataColeta2,
+				volume: 2
+			)
+		ruColeta.save(failOnError: true)
+		
+		def dataColeta3 = new Date()
+		def coleta3 = new Coleta(
+				nome: "Coleta NUKA COLA",
+				dataColeta: dataColeta3,
+				volume: 2
+			)
+		coleta3.save(failOnError: true)
+		
+		def dataColeta4 = new Date()
+		def coleta4 = new Coleta(
+				nome: "Coleta UFPE2",
+				dataColeta: dataColeta4,
+				volume: 15
+			)
+		coleta4.save(failOnError: true)
+		
+		def dataColeta5 = new Date()
+		def coleta5 = new Coleta(
+				nome: "Coleta UFRPE",
+				dataColeta: dataColeta5,
+				volume: 8
+			)
+		coleta5.save(failOnError: true)
+		
+		def dataColeta6 = new Date()
+		def coleta6 = new Coleta(
+				nome: "Coleta UPE",
+				dataColeta: dataColeta6,
+				volume: 7
+			)
+		coleta6.save(failOnError: true)
+		
         def stockHarvestCompany1 = new HarvestCompany(name: "Garbage Co")
         def stockHarvestCompany2 = new HarvestCompany( name: "Reciclatron")
         def stockHarvestCompany3 = new HarvestCompany( name: "Clean Planet")

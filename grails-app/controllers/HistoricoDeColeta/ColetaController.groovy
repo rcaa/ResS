@@ -14,6 +14,21 @@ class ColetaController {
         params.max = Math.min(max ?: 10, 100)
         [coletaInstanceList: Coleta.list(params), coletaInstanceTotal: Coleta.count()]
     }
+	def listGroupBySize(){
+		def listaGeral = Coleta.list(params)
+		
+		def listaAgrupada = [:]
+		listaGeral.each{
+			if(listaAgrupada.containsKey(it.volume)){
+				listaAgrupada[it.volume]['nome'] += it.nome
+				listaAgrupada[it.volume]['coletaCount'] += 1
+				
+			}else{
+			listaAgrupada[it.volume] = ['volume':it.volume , 'coletaCount':1]
+				}
+			}
+		[coletaInstanceList: listaAgrupada.values(), coletaInstanceTotal: listaAgrupada.size()]
+		}
 
     def create() {
         [coletaInstance: new Coleta(params)]
@@ -48,7 +63,7 @@ class ColetaController {
 
         [coletaInstance: coletaInstance]
     }
-
+	
     def edit(Long id) {
         def coletaInstance = Coleta.get(id)
         if (!coletaInstance) {
