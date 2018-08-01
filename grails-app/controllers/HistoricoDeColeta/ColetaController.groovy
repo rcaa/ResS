@@ -101,4 +101,20 @@ class ColetaController {
             '*'{ render status: NOT_FOUND }
         }
     }
+	
+	def list(Integer max) {
+		params.max = Math.min(max ?: 10, 100)
+		[coletaInstanceList: Coleta.list(params), coletaInstanceTotal: Coleta.count()]
+	}
+	//lisGroupByVolume
+	def totalVolume() {
+		def listaGeralDeColetas = Coleta.list(params)
+		def totalVolume = 0
+		
+		listaGeralDeColetas.each {
+			totalVolume += it.volume 
+		}
+		
+		[coletaTotal : totalVolume]
+	}
 }
