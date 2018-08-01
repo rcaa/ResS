@@ -1,21 +1,10 @@
+<%@ page import="user.User" %>
 <!DOCTYPE html>
 <html >
 <head>
     <meta charset="UTF-8">
     <title>ResS - login</title>
     <link rel="stylesheet" type="text/css" href="../css/login.css"/>
-    <g:javascript plugin="jquery"/>
-    <g:javascript plugin="jquery-ui"/>
-    <script>
-        $(document).ready(function(){
-
-        });
-
-        function clickLink(){
-            var link = $('.hiddenDashboard');
-            link[0].click();
-        }
-     </script>
 </head>
 
 <body>
@@ -53,13 +42,15 @@
 </div>
 <br>
 <div class="login">
-    <input type="text" placeholder="username" name="user"><br>
-    <input type="password" placeholder="password" name="password"><br>
-    <input type="button" value="Login" onclick="clickLink()">
-    <g:link  class="hiddenDashboard" controller="dashboard" action="index" style="display: none"/>
+    <g:form action="login" controller="User">
+		<fieldset class="form">
+			<g:render template="form"/>
+		</fieldset>
+		<fieldset class="buttons">
+			<g:submitButton name="login" value="Login" />
+		</fieldset>
+	</g:form>
 </div>
-
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
 </body>
 </html>
