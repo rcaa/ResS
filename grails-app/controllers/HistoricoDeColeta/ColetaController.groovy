@@ -106,7 +106,7 @@ class ColetaController {
 		params.max = Math.min(max ?: 10, 100)
 		[coletaInstanceList: Coleta.list(params), coletaInstanceTotal: Coleta.count()]
 	}
-	//lisGroupByVolume
+	
 	def totalVolume() {
 		def listaGeralDeColetas = Coleta.list(params)
 		def totalVolume = 0
@@ -116,5 +116,17 @@ class ColetaController {
 		}
 		
 		[coletaTotal : totalVolume]
+	}
+
+	def searchColeta(){
+		def coletaInstance = Coleta.findByNome(params.nome)
+	
+		if(coletaInstance == null){
+			render(view: "searchColeta")
+			return
+		}
+	
+		flash.message = message(code: 'default.search.message', args: [message(code: 'coleta.label', default: 'Coleta'), coletaInstance.nome])
+		redirect coletaInstance
 	}
 }

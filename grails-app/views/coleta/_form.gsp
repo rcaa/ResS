@@ -28,4 +28,3 @@
 	<g:field name="volume" type="number" value="${coletaInstance.volume}" required=""/>
 
 </div>
-
