@@ -14,7 +14,8 @@
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
+				<li><g:link class="list" action="totalResidueGenerator"><g:message code="default.total.residue.generator.label" /></g:link></li>
+		</ul>
 		</div>
 		<div id="show-residueGenerator" class="content scaffold-show" role="main">
 			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
