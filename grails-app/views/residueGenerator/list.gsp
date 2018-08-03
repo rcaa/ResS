@@ -15,6 +15,7 @@
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
 				<li><g:link class="list" action="listGroupByType"><g:message code="default.list.group.type.label" /></g:link></li>
 				<li><g:link class="list" action="listGroupByAddress"><g:message code="Ordenar por endereco" /></g:link></li>
+				<li><g:link class="search" action ="searchCNPJ"><g:message code="default.busca.cnpj.label" /></g:link></li>
 			</ul>
 		</div>
 		<div id="list-residueGenerator" class="content scaffold-list" role="main">
