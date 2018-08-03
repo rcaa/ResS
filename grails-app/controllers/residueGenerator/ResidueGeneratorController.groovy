@@ -10,10 +10,17 @@ class ResidueGeneratorController {
         redirect(action: "list", params: params)
     }
 
-    def search(Integer max){
-        params.max = Math.min(max ?: 10, 100)
-        [residueGeneratorInstanceList: ResidueGenerator.list(params), residueGeneratorInstanceTotal: ResidueGenerator.count()]
-    }
+    def searchCNPJ(){
+		def residueGeneratorInstance = ResidueGenerator.findByCnpj(params.cnpj)
+		
+		if(residueGeneratorInstance == null){
+			render(view: "searchCNPJ")
+			return
+		}
+		
+		flash.message = getDefaultMessage('default.search.message', residueGeneratorInstance.id)
+		redirect(action: "show", id: residueGeneratorInstance.id)
+	}
 
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)

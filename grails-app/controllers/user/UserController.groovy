@@ -10,6 +10,15 @@ class UserController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+	def login(){
+		def user = User.findByLogin(params.login)
+		if(user != null && user.getPassword() == params.password){
+			redirect (uri:"/dashboard/index")
+			return
+		}
+		redirect (uri:"/home/login")
+	}
+	
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond User.list(params), model:[userInstanceCount: User.count()]
@@ -22,6 +31,18 @@ class UserController {
     def create() {
         [userInstance: new User(params)]
     }
+	
+	def searchLogin(){
+		def userInstance = User.findByLogin(params.login)
+		
+		if(userInstance == null){
+			render(view: "searchLogin")
+			return
+		}
+		
+		flash.message = message(code: 'default.search.message', args: [message(code: 'user.label', default: 'User'), userInstance.id])
+		redirect userInstance
+	}
 
     @Transactional
     def save(User userInstance) {
@@ -106,4 +127,6 @@ class UserController {
             '*'{ render status: NOT_FOUND }
         }
     }
+	
+	
 }

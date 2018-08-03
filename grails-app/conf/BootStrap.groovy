@@ -1,5 +1,6 @@
 import harvestCompany.HarvestCompany
 import residueGenerator.ResidueGenerator
+import user.User
 
 class BootStrap {
 
@@ -169,6 +170,24 @@ class BootStrap {
                 averageDailyMeals: 0
         )
         sinhaPimenta.save(failOnError: true)
+		
+		def user1 = new User(
+				id: 1,
+				name: "Joãozinho",
+				address: "Rua da Aurora",
+				login: "admin",
+				password: "admin1"
+		)
+		user1.save(failOnError: true)
+		
+		def user2 = new User(
+				id: 2,
+				name: "Mariazinha",
+				address: "Rua da Concórdia",
+				login: "mariazinha",
+				password: "mariazinha"
+		)
+		user2.save(failOnError: true)
 
     }
     def destroy = {
