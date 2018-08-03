@@ -1,21 +1,23 @@
-<%@ page import="HistoricoDeColeta.Coleta" %>
+			<%@ page import="HistoricoDeColeta.Coleta" %>
 
 
 
-<div class="fieldcontain ${hasErrors(bean: coletaInstance, field: 'nome', 'error')} ">
+<div class="fieldcontain ${hasErrors(bean: coletaInstance, field: 'nome', 'error')} required">
 	<label for="nome">
-		<g:message code="coleta.nome.label" default="Nome" />
-		
-	</label>
-	<g:textField name="nome" value="${coletaInstance?.nome}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: coletaInstance, field: 'data', 'error')} required">
-	<label for="data">
-		<g:message code="coleta.data.label" default="Data" />
+		<g:message code="coleta.nome.label" default="Nome do Estabelecimento" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:datePicker name="data" precision="day"  value="${coletaInstance?.data}"  />
+	<g:textField name="nome" required="" value="${coletaInstance?.nome}"/>
+
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: coletaInstance, field: 'dataColeta', 'error')} required">
+	<label for="dataColeta">
+		<g:message code="coleta.dataColeta.label" default="Data Coleta" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:datePicker name="dataColeta" precision="day"  value="${coletaInstance?.dataColeta}"  />
+
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: coletaInstance, field: 'volume', 'error')} required">
@@ -24,5 +26,5 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:field name="volume" type="number" value="${coletaInstance.volume}" required=""/>
-</div>
 
+</div>

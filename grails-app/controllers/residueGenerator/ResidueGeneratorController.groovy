@@ -137,4 +137,15 @@ class ResidueGeneratorController {
 	def getDefaultMessage(String code, Long id) {
 		message(code: code, args: [message(code: 'residueGenerator.label', default: 'ResidueGenerator'), id])
 	}
+	
+	def totalResidueGenerator() {
+		def listResidueGenerator = ResidueGenerator.list(params)
+		def totalResidueGenerator = 0
+		
+		listResidueGenerator.each {
+			totalResidueGenerator += 1
+		}
+		
+		[totalResidueGenerator : totalResidueGenerator]
+	}
 }
