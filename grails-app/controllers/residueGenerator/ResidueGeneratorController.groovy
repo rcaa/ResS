@@ -43,6 +43,21 @@ class ResidueGeneratorController {
 		
         [residueGeneratorInstanceList: listaAgrupada.values(), residueGeneratorInstanceTotal: listaAgrupada.size()]
     }
+	def listGroupByAddress(){
+		def listaGeral = ResidueGenerator.list(params)
+		def listaAgrupada = [:]
+		listaGeral.each{
+			if(listaAgrupada.containsKey(it.addressGenerator)){
+				listaAgrupada[it.address]['averageDailyMeals'] += it.averageDailyMeals
+				listaAgrupada[it.address]['averageMonthlyMeals'] += it.averageMonthlyMeals
+				listaAgrupada[it.address]['generatorCount'] += 1
+				
+			}else{
+			listaAgrupada[it.addressGenerator] = ['address':it.addressGenerator ,'averageDailyMeals':it.averageDailyMeals, 'averageMonthlyMeals':it.averageMonthlyMeals, 'generatorCount':1]
+				}
+			}
+		[residueGeneratorInstanceList: listaAgrupada.values(), residueGeneratorInstanceTotal: listaAgrupada.size()]
+		}
 
     def create() {
         [residueGeneratorInstance: new ResidueGenerator(params)]
