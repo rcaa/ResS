@@ -11,4 +11,8 @@ class HarvestCompany {
         id nullable:false,unique:true,blank:false
         name nullable: false, blank: false
     }
+	
+	String toString() { 
+		return "id: " + this.id + ", Name: " + this.name	
+	} 
 }

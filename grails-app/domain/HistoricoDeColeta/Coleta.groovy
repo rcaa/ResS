@@ -11,7 +11,7 @@ class Coleta {
 
     static constraints = {
 
-        nome blank: true // no caso de ser ecoponto pode não ter nome
+        nome blank: true, maxSize: 100 // no caso de ser ecoponto pode não ter nome
         dataColeta blank: false, nullable: false
         volume  blank: false, nullable: false
     }
@@ -32,14 +32,38 @@ class Coleta {
 	}
 	
 	@Override
-	boolean equals(Object obj){
-		if (obj instanceof Coleta){
-			Coleta coleta = (Coleta) obj
-			if(coleta.data  == this.data && coleta.volume == this.volume && coleta.nome == this.nome){
-				return true
-			}
-		}
-	return false
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Coleta other = (Coleta) obj;
+		if (dataColeta == null) {
+			if (other.dataColeta != null)
+				return false;
+		} else if (!dataColeta.equals(other.dataColeta))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (volume != other.volume)
+			return false;
+		return true;
+	}
+	
+@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((dataColeta == null) ? 0 : dataColeta.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + volume;
+		return result;
 	}
 	
 
