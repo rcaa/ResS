@@ -12,6 +12,11 @@ class HarvestCompany {
         name nullable: false, blank: false, maxSize: 50
     }
 	
+
+	String toString() { 
+		return "id: " + this.id + ", Name: " + this.name	
+	} 
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

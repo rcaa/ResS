@@ -51,7 +51,8 @@ class GeneratorTestDataAndOperations{
             generator.cnpj== CNPJ
         }
     }
-    static public void createGenerator(String address){
+	
+    static public void criarGeneratorPorEndereco(String address){
         def cont = new ResidueGeneratorController()
         def novoGenerator = findGeneratorByAddress(address)
         cont.params << novoGenerator as ResidueGenerator

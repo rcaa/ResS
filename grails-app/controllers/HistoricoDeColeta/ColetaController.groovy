@@ -37,15 +37,15 @@ class ColetaController {
     def save() {
         Coleta a = new Coleta(params)
         if(Coleta.findByNomeAndDataColeta(a.nome,a.dataColeta) == null){
-        def coletaInstance = new Coleta(params)
+			def coletaInstance = new Coleta(params)
 
-        if (!coletaInstance.save(flush: true)) {
-            render(view: "create", model: [coletaInstance: coletaInstance])
-            return
-        }
+			if (!coletaInstance.save(flush: true)) {
+				render(view: "create", model: [coletaInstance: coletaInstance])
+				return
+			}
+		
+			getDefaultMessageForColeta(coletaInstance, "show", 'default.created.message')
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'coleta.label', default: 'Coleta'), coletaInstance.id])
-        redirect(action: "show", id: coletaInstance.id)
         }
     }
 	
@@ -56,9 +56,7 @@ class ColetaController {
     def show(Long id) {
         def coletaInstance = Coleta.get(id)
         if (!coletaInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'coleta.label', default: 'Coleta'), id])
-            redirect(action: "list")
-            return
+			getDefaultMessageForColeta(coletaInstance, "list", 'default.not.found.message')
         }
 
         [coletaInstance: coletaInstance]
@@ -67,9 +65,8 @@ class ColetaController {
     def edit(Long id) {
         def coletaInstance = Coleta.get(id)
         if (!coletaInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'coleta.label', default: 'Coleta'), id])
-            redirect(action: "list")
-            return
+			getDefaultMessageForColeta(coletaInstance, "list", 'default.not.found.message')
+		
         }
 
         [coletaInstance: coletaInstance]
@@ -78,9 +75,7 @@ class ColetaController {
     def update(Long id, Long version) {
         def coletaInstance = Coleta.get(id)
         if (!coletaInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'coleta.label', default: 'Coleta'), id])
-            redirect(action: "list")
-            return
+			getDefaultMessageForColeta(coletaInstance, "list", 'default.not.found.message')
         }
 
         if (version != null) {
@@ -99,9 +94,7 @@ class ColetaController {
             render(view: "edit", model: [coletaInstance: coletaInstance])
             return
         }
-
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'coleta.label', default: 'Coleta'), coletaInstance.id])
-        redirect(action: "show", id: coletaInstance.id)
+		getDefaultMessageForColeta(coletaInstance, "show", 'default.updated.message')
     }
 	
 	def getDefaultColetaMessage(){
@@ -125,4 +118,19 @@ class ColetaController {
             redirect(action: "show", id: id)
         }
     }
+	
+	def getDefaultMessageForColeta(Coleta coletaInstance, String action, String code ){
+		
+		if (coletaInstance != null){
+			flash.message = message(code: code, args: [message(code: 'coleta.label', default: 'Coleta'), coletaInstance.id])
+			redirect(action: action, id: coletaInstance.id)
+			return
+		}
+		
+		else{
+			flash.message = message(code: code, args: [message(code: 'coleta.label', default: 'Coleta'), id])
+			redirect(action: action)
+			return
+		}
+	}
 }
