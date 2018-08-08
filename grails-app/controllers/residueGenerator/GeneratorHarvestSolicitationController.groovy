@@ -23,22 +23,32 @@ class GeneratorHarvestSolicitationController {
     }
 
     def save(){
-        def harvestSolicitationInstance = new HarvestSolicitation(params)
-        harvestSolicitationInstance.solicitationDate = new Date()
-        harvestSolicitationInstance.status = "Pendente"
-        harvestSolicitationInstance.residueGenerator = ResidueGenerator.get(harvestSolicitationInstance.generatorId)
+        def harvestSolicitationInstance = instanciarHarvestSolicitation(params)
 
         if(!harvestSolicitationInstance.save(flush: true)){
             List<HarvestCompany> companyList = HarvestCompany.findAll();
             render(view: "create", model: [harvestSolicitationInstance: harvestSolicitationInstance, companyList:companyList])
             return
         }
-        def residueGenerator = ResidueGenerator.get(harvestSolicitationInstance.generatorId);
-        residueGenerator.harvestSolicitation = harvestSolicitationInstance;
-        residueGenerator.hasActiveHarvest = true;
+        def residueGenerator = instanciarResidueGenerator(harvestSolicitationInstance);
         residueGenerator.save(flush: true)
         redirect(action: "index", id: harvestSolicitationInstance.generatorId)
     }
+
+	private ResidueGenerator instanciarResidueGenerator(HarvestSolicitation harvestSolicitationInstance) {
+		def residueGenerator = ResidueGenerator.get(harvestSolicitationInstance.generatorId);
+		residueGenerator.harvestSolicitation = harvestSolicitationInstance;
+		residueGenerator.hasActiveHarvest = true
+		return residueGenerator
+	}
+
+	private HarvestSolicitation instanciarHarvestSolicitation(Map params) {
+		def harvestSolicitationInstance = new HarvestSolicitation(params)
+		harvestSolicitationInstance.solicitationDate = new Date()
+		harvestSolicitationInstance.status = "Pendente"
+		harvestSolicitationInstance.residueGenerator = ResidueGenerator.get(harvestSolicitationInstance.generatorId)
+		return harvestSolicitationInstance
+	}
 
 
 }

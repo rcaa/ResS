@@ -9,10 +9,31 @@ class HarvestCompany {
 
     static constraints = {
         id nullable:false,unique:true,blank:false
-        name nullable: false, blank: false
+        name nullable: false, blank: false, maxSize: 50
     }
 	
+
 	String toString() { 
 		return "id: " + this.id + ", Name: " + this.name	
 	} 
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof HarvestCompany){
+			HarvestCompany harvestCompany = (HarvestCompany) obj
+			if(harvestCompany.id == id){
+				return true
+			}
+		}
+		return false
+	}
 }
