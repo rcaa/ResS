@@ -17,7 +17,7 @@ class ResidueGenerator {
 
     static constraints = {
 
-        nameGenerator nullable:true,blank:true, maxSize: 20 // no caso de ser ecoponto pode n�o ter nome
+        nameGenerator nullable:true,blank:true, maxSize: 200 // no caso de ser ecoponto pode n�o ter nome
         type inList: ["Restaurante","Cantina","Ecoponto"], nullable:false, blank:false, maxSize: 20
         addressGenerator blank: false, nullable: false, maxSize: 40, unique: true
         averageDailyMeals  nullable: false, min: 0,blank:false
