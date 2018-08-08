@@ -124,7 +124,8 @@ class GeneratorTestDataAndOperations{
 						    addressGenerator: address,
 						    averageMonthlyMeals: existingGenerator.averageDailyMeals,
 						    averageDailyMeals: existingGenerator.averageMonthlyMeals]
-            cont.updateGenerator(existingGenerator.id, existingGenerator.getVersion()+1)
+            def versaoAtual = existingGenerator.getVersion()+1
+			cont.updateGenerator(existingGenerator.id, versaoAtual)
             cont.response.reset()
         }
     }
