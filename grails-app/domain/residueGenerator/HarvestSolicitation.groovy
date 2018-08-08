@@ -14,7 +14,7 @@ class HarvestSolicitation {
     static constraints = {
         harvesterId nullable:false,blank:false,unique:true
         generatorId nullable:false,blank:false,unique:true
-        status nullable:false,blank:false
+        status nullable:false,blank:false , maxSize: 10 
         solicitationDate nullable:false,blank:false
         estimatedAmountOfResidue nullable:false,blank:false
     }
