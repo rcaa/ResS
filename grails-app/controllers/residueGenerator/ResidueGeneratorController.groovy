@@ -18,10 +18,22 @@ class ResidueGeneratorController {
 			return
 		}
 		
-		flash.message = getDefaultMessage('default.search.message', residueGeneratorInstance.id)
-		redirect(action: "show", id: residueGeneratorInstance.id)
-	}
 
+		this.flashAndRedirect('default.search.message',residueGeneratorInstance.id,"show",residueGeneratorInstance.id)
+	}
+	
+	def flashAndRedirect(String message,int id, String action, int redirectID){
+		if(redirectID != null){
+			flash.message = getDefaultMessage(message, id)
+			redirect(action: action, id: id)
+	
+		}
+		else{
+			flash.message = getDefaultMessage(message, id)
+			redirect(action: action)
+		}
+	}
+	
     def list(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         [residueGeneratorInstanceList: ResidueGenerator.list(params), residueGeneratorInstanceTotal: ResidueGenerator.count()]
@@ -69,9 +81,8 @@ class ResidueGeneratorController {
             render(view: "create", model: [residueGeneratorInstance: residueGeneratorInstance])
             return
         }
-
-		flash.message = getDefaultMessage('default.created.message', residueGeneratorInstance.id)
-        redirect(action: "show", id: residueGeneratorInstance.id)
+		this.flashAndRedirect('default.created.message', residueGeneratorInstance.id,"show",null)
+		
     }
 	
 	def saveGenerator() {
@@ -81,9 +92,8 @@ class ResidueGeneratorController {
     def show(Long id) {
         def residueGeneratorInstance = ResidueGenerator.get(id)
         if (!residueGeneratorInstance) {
-			flash.message = getDefaultMessage('default.not.found.message', id)
-            redirect(action: "list")
-            return
+            this.flashAndRedirect('default.not.found.message', id, "list", null)
+			return
         }
 
         [residueGeneratorInstance: residueGeneratorInstance]
@@ -92,9 +102,8 @@ class ResidueGeneratorController {
     def edit(Long id) {
         def residueGeneratorInstance = ResidueGenerator.get(id)
         if (!residueGeneratorInstance) {
-			flash.message = getDefaultMessage('default.not.found.message', id)
-            redirect(action: "list")
-            return
+			this.flashAndRedirect('default.not.found.message', id, "list", null)
+			return
         }
 
         [residueGeneratorInstance: residueGeneratorInstance]
@@ -103,8 +112,7 @@ class ResidueGeneratorController {
     def update(Long id, Long version) {
         def residueGeneratorInstance = ResidueGenerator.get(id)
         if (!residueGeneratorInstance) {
-			flash.message = getDefaultMessage('default.not.found.message', id)
-            redirect(action: "list")
+			this.flashAndRedirect('default.not.found.message', id, "list", null)
             return
         }
 
@@ -124,9 +132,7 @@ class ResidueGeneratorController {
             render(view: "edit", model: [residueGeneratorInstance: residueGeneratorInstance])
             return
         }
-
-		flash.message = getDefaultMessage('default.updated.message', id)
-        redirect(action: "show", id: residueGeneratorInstance.id)
+		this.flashAndRedirect('default.updated.message', id, "show", residueGeneratorInstance.id)
     }
 
 	def updateGenerator(Long id, Long version) {
@@ -136,19 +142,19 @@ class ResidueGeneratorController {
     def delete(Long id) {
         def residueGeneratorInstance = ResidueGenerator.get(id)
         if (!residueGeneratorInstance) {
-			flash.message = getDefaultMessage('default.not.found.message', id)
-            redirect(action: "list")
+			this.flashAndRedirect('default.not.found.message', id, "list", null)
             return
         }
 
         try {
             residueGeneratorInstance.delete(flush: true)
-			flash.message = getDefaultMessage('default.deleted.message', id)
-            redirect(action: "list")
+			
+			this.flashAndRedirect('default.deleted.message', id, "list", null)
+			
         }
         catch (DataIntegrityViolationException e) {
-			flash.message = getDefaultMessage('default.not.deleted.message', id)
-            redirect(action: "show", id: id)
+			this.flashAndRedirect('default.deleted.message', id, "list", id)
+			
         }
     }
 
